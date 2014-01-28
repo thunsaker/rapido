@@ -1,0 +1,2 @@
+include ':foursquareoauthlibrary'
+include ':rapido'

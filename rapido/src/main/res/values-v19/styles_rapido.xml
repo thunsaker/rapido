@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<style name="Theme.Rapido" parent="@style/Theme.AppCompat.Light.DarkActionBar">-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+        <!--<item name="android:fitsSystemWindows">true</item>-->
+
+        <!--<item name="android:actionBarItemBackground">@color/orange</item>-->
+        <!--<item name="android:actionBarStyle">@style/ActionBar.Solid.Rapido</item>-->
+    <!--</style>-->
+
+    <!--<style name="ActionBar.Solid.Rapido" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">-->
+        <!--<item name="android:background">@color/orange</item>-->
+        <!--<item name="android:backgroundStacked">@color/orange</item>-->
+        <!--<item name="android:backgroundSplit">@color/orange</item>-->
+    <!--</style>-->
+
+    <style name="Theme.Rapido" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_rapido</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Rapido</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Rapido</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Rapido</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Rapido</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Rapido</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_rapido</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_rapido</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Rapido</item>
+
+        <!-- Light.DarkActionBar specific -->
+        <item name="android:actionBarWidgetTheme">@style/Theme.Rapido.Widget</item>
+
+    </style>
+
+    <style name="ActionBar.Solid.Rapido" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/ab_solid_rapido</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_rapido</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_rapido</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Rapido</item>
+    </style>
+</resources>

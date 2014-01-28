@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Rápido</string>
+    <string name="menu_settings">Configurações</string>
+    <string name="menu_search">Buscar</string>
+    <string name="menu_refresh">Atualizar</string>
+    <string name="menu_gps">Usar Posição GPS</string>
+    <string name="menu_location_no">Remover Local</string>
+
+    <string name="title_activity_main">Rápido</string>
+    <string name="title_activity_twitter">Autorização do Twitter</string>
+    <string name="title_activity_foursquare">Autorização do Foursquare</string>
+    <string name="title_activity_bitly">Autorização do bit.ly</string>
+    <string name="title_activity_location">Selecionar Local</string>
+    <string name="title_activity_location_results">Resultados da Busca</string>
+    <string name="title_activity_google_plus">Autorização do Google+</string>
+    <string name="title_activity_app_dot_net">Autorização do app.net</string>
+
+    <string name="prefs_about_version_title">Versão da Compilação</string>
+    <string name="prefs_about_rate_title">Classificar</string>
+    <string name="prefs_about_rate_summary">Classificar e comentar na Play Store.</string>
+
+    <string name="label_update">Atualização:</string>
+    <string name="button_send">Enviar</string>
+    <string name="auth_cancelled">Autorização Cancelada</string>
+    <string name="twitter_auth_connected">Conectado ao Twitter!</string>
+    <string name="twitter_auth_failed">Falha ao Autorizar o Twitter. :(</string>
+    <string name="update_abort">Atualização cancelada</string>
+
+    <string name="error_message_too_long">Mensagem muito longa!</string>
+    <string name="error_not_posted">Erro: Mensagen não enviada.</string>
+    <string name="error_no_services_selected">Erro: Nenhum serviço foi selecionado.</string>
+    <string name="error_no_message">Erro: Nenhum conteúdo para postar.</string>
+    <string name="error_message_too_long_foursquare_links">Erro: O Foursquare não encurta links automaticamente, ative o bit.ly para economizar espaço.</string>
+
+    <string name="alert_title">Atualizando Status</string>
+    <string name="alert_posted_facebook">Postado com sucesso no Facebook!</string>
+    <string name="alert_posted_twitter">Postado com sucesso no Twitter!</string>
+    <string name="alert_posted_foursquare">Postado com sucesso no Foursquare</string>
+    <string name="alert_posted_google_plus">Postado com sucesso no Google Plus!</string>
+    <string name="alert_posted_app_dot_net">Postado com sucesso no app.net!</string>
+
+    <string name="alert_posting_facebook">Postando no Facebook</string>
+    <string name="alert_posting_twitter">Postando no Twitter</string>
+    <string name="alert_posting_foursquare">Fazendo check-in no Foursquare</string>
+    <string name="alert_posting_google_plus">Postando no Google Plus</string>
+    <string name="alert_posting_app_dot_net">Postando no app.net</string>
+    <string name="alert_fail_facebook">Falha ao atualizar o Facebook.</string>
+    <string name="alert_fail_twitter">Falha ao atualizar o Twitter.</string>
+    <string name="alert_fail_foursquare">Falha ao atualizar o Foursquare.</string>
+    <string name="alert_fail_google_plus">Falha ao atualizar o Google Plus.</string>
+    <string name="alert_fail_app_dot_net">Falha ao atulizar o app.net.</string>
+    <string name="alert_fail_retry">Toque para repetir</string>
+    <string name="alert_posting_shortening_bitly">Encurtando com o bit.ly</string>
+    <string name="alert_posting_shortened_bitly">Encurtado, postando agora.</string>
+
+    <string name="alert_persistent_notification_title">Atualização Rápida</string>
+    <string name="alert_persistent_notification">Atualizar seu status agora!</string>
+
+    <string name="dialog_no_internets">Nenhuma conexão com a internet.</string>
+    <string name="dialog_loading">Carregando Autorização do %s</string>
+    <string name="dialog_please_wait">Por favor aguarde&#8230;</string>
+    <string name="dialog_updating_status">Atualizando status&#8230;</string>
+
+    <string name="prefs_category_connected_title">Contas</string>
+    <string name="prefs_facebook_title">Facebook</string>
+    <string name="prefs_facebook_title_connected">Conectando ao Facebook!</string>
+    <string name="prefs_facebook_summary_on">Conectado ao %s</string>
+    <string name="prefs_facebook_summary_off">Conectar ao Facebook</string>
+    <string name="prefs_facebook_hashtags_title">Remover #hashtags</string>
+    <string name="prefs_facebook_hashtags_summary_on">Não postar hashtags no Facebook.</string>
+    <string name="prefs_facebook_hashtags_summary_off">Incluir hashtags nos posts do Facebook.</string>
+
+    <string name="prefs_twitter_title">Twitter</string>
+    <string name="prefs_twitter_title_connected">Conectado ao Twitter!</string>
+    <string name="prefs_twitter_summary_on">Conectado ao %s</string>
+    <string name="prefs_twitter_summary_off">Conectado ao Twitter</string>
+
+    <string name="prefs_bitly_title">bit.ly</string>
+    <string name="prefs_bitly_title_connect">Conectar ao Bitly</string>
+    <string name="prefs_bitly_title_connected">Conectado ao Bitly</string>
+    <string name="prefs_bitly_title_connect_summary_on">Encurtar links externos</string>
+    <string name="prefs_bitly_title_connect_summary_off">Não encurtar links</string>
+    <string name="prefs_bitly_title_summary">Ativar encurtamento de links com o bit.ly</string>
+    <string name="prefs_bitly_title_shorten_facebook">Encurtar Links do Facebook?</string>
+    <string name="prefs_bitly_title_shorten_twitter">Encurtar Links do Twitter?</string>
+    <string name="prefs_bitly_title_shorten_domain">Escolher Domínio de URL Curto</string>
+    <string name="prefs_bitly_title_shorten_domain_summary">Usar o bit.ly, j.mp ou bitly.com para encurtar links</string>
+
+    <string name="prefs_category_application_settings">Configurações do Aplicativo</string>
+    <string name="prefs_sendOnEnter_title">Enviar com Enter?</string>
+    <string name="prefs_sendOnEnter_summary_on">Enviar mensagem ao pressionar Enter.</string>
+    <string name="prefs_clear_accounts_title">Limpar Dados de Contas</string>
+    <string name="prefs_category_misc_title">Diversos</string>
+    <string name="prefs_misc_black_title">Usar Tema Preto</string>
+    <string name="prefs_category_title_about">Sobre</string>
+    <string name="prefs_category_title_experimental">Experimental</string>
+    <string name="prefs_category_title_premium">Premium</string>
+
+    <string name="prefs_persistent_notification_title">Mostrar Notificação Persistente</string>
+    <string name="prefs_persistent_notification_summary_off"></string>
+    <string name="prefs_persistent_notification_summary_on">O Rápido vai ficar na sua área de notificações</string>
+    <string name="prefs_persistent_notification_expanded_checkin">Check-In</string>
+    <string name="prefs_persistent_notification_expanded_update_status">Postar</string>
+
+    <!-- Foursquare user info -->
+    <string name="prefs_foursquare_title">Foursquare</string>
+    <string name="prefs_foursquare_title_connected">Conectado ao Foursquare!</string>
+    <string name="prefs_foursquare_summary_on">Conectado ao %s</string>
+    <string name="prefs_foursquare_summary_off">Conectar ao Foursquare</string>
+
+    <!-- Google Plus user info -->
+    <string name="prefs_google_plus_title">Google Plus</string>
+    <string name="prefs_google_plus_title_connected">Conectado ao Google Plus!</string>
+    <string name="prefs_google_plus_summary_on">Conectado ao %s</string>
+    <string name="prefs_google_plus_summary_off">Conectar ao Google Plus</string>
+
+    <!-- App.net user info -->
+    <string name="prefs_app_dot_net_title">app.net</string>
+    <string name="prefs_app_dot_net_title_connected">Conectado ao app.net!</string>
+    <string name="prefs_app_dot_net_summary_on">Conectado ao %s</string>
+    <string name="prefs_app_dot_net_summary_off">Conectar ao app.net</string>
+
+    <string name="foursquare_powered">Fornecido pelo Foursquare</string>
+    <string name="location_load">Carregando locais&#8230;</string>
+    <string name="location_wait">Aguardando GPS, por favor aguarde.</string>
+    <string name="location_none">Nenhum local conhecido nas proximidades.</string>
+    <string name="location_search_title">Buscar um local</string>
+    <string name="location_search_hint">Loja do Fulano</string>
+    <string name="location_icon">Ícone de local</string>
+    <string name="location_select">Selecione um local</string>
+    <string name="location_use_gps">Minha Posição no GPS</string>
+    <string name="location_remove">Informação de local removida</string>
+    <string name="location_add">Adicionar Local</string>
+    <string name="location_add_summary">Selecione um local ou coordenadas de GPS</string>
+</resources>
