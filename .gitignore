@@ -46,6 +46,6 @@ gen-external-apklibs
 com_crashlytics_export_strings.xml
 crashlytics.properties
 
-foursquareoauthlibrary/
 donotsave.xml
 AuthHelper.java
+snackbar
