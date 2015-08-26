@@ -1,22 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.7.+'
+        classpath 'com.android.tools.build:gradle:1.3.0'
+        classpath 'com.google.gms:google-services:1.3.0-beta1'
     }
 }
 
 allprojects {
     repositories {
-        mavenCentral()
-        maven {
-            url "http://mente.github.io/facebook-api-android-aar"
-        }
-    }
-
-    tasks.withType(Compile) {
-        options.compilerArgs << "-Xlint:deprecation"
+        jcenter()
     }
 }
+//
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '2.4'
+//}

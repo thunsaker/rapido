@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/navigation_list_item_height"
+    android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/material_icon_size_small"
+        android:layout_height="@dimen/material_icon_size_small"
+        android:layout_gravity="center_vertical"
+        android:padding="@dimen/material_padding"
+        android:layout_marginLeft="@dimen/material_keyline_1"
+        android:layout_marginStart="@dimen/material_keyline_1"
+        android:tint="@color/gray"
+        android:contentDescription="" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/material_keyline_2"
+        android:layout_marginStart="@dimen/material_keyline_2"
+        android:layout_marginRight="@dimen/material_keyline_1"
+        android:layout_marginEnd="@dimen/material_keyline_1"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/material_type_nav_drawer"
+        android:text="@string/placeholder_nav_drawer_item_title" />
+
+</FrameLayout>

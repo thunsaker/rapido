@@ -1,0 +1,10 @@
+[submodule "foursquare-android-oauth"]
+	path = foursquare-android-oauth
+	url = https://github.com/thunsaker/foursquare-android-oauth.git
+	branch = master-remote
+[submodule "snackbar"]
+	path = snackbar
+	url = https://github.com/thunsaker/snackbar
+[submodule "wavecompat"]
+	path = WaveCompat
+	url = https://github.com/thunsaker/wavecompat.git

@@ -1,0 +1,49 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:key="@string/prefs_key_accounts_facebook"
+        android:title="@string/accounts_facebook"
+        android:summaryOn="@string/pref_accounts_connected"
+        android:summaryOff="@string/prefs_accounts_connect"
+        android:icon="@drawable/ic_stat_facebook_circle"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="@string/prefs_key_accounts_twitter"
+        android:title="@string/accounts_twitter"
+        android:summaryOn="@string/pref_accounts_connected"
+        android:summaryOff="@string/prefs_accounts_connect"
+        android:icon="@drawable/ic_stat_twitter_circle"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="@string/prefs_key_accounts_foursquare"
+        android:title="@string/accounts_foursquare"
+        android:summaryOn="@string/pref_accounts_connected"
+        android:summaryOff="@string/prefs_accounts_connect"
+        android:icon="@drawable/ic_stat_foursquare_circle"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="@string/prefs_key_accounts_plus"
+        android:title="@string/accounts_google_plus"
+        android:summaryOn="@string/pref_accounts_connected"
+        android:summaryOff="@string/prefs_accounts_connect"
+        android:icon="@drawable/ic_stat_google_plus_circle"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="@string/prefs_key_accounts_bitly"
+        android:title="@string/accounts_bitly"
+        android:summaryOn="@string/pref_accounts_connected"
+        android:summaryOff="@string/prefs_accounts_connect"
+        android:icon="@drawable/ic_stat_bitly_circle"
+        android:defaultValue="false" />
+
+    <Preference
+        android:key="@string/prefs_key_accounts_clear"
+        android:title="@string/prefs_clear_accounts_title"
+        android:enabled="true"
+        android:summary="Use this to fix account issues." />
+
+</PreferenceScreen>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--http://paletton.com/#uid=70d0u0kw0w0jvdaooy5y5ooju0f-->
+    <!--http://paletton.com/#uid=60d0u0kw0w0jvdaooy5y5ooju0f-->
+    <!--http://paletton.com/#uid=60n0u0kpo++di+jjw+yvn+vp+4q-->
+    <color name="rapido_orange">#ffff8900</color>
+    <color name="rapido_orange_translucent">#55ff8900</color>
+    <color name="rapido_orange_translucent_pressed">#aaff8900</color>
+
+    <!--<color name="rapido_orange">#ffff8235</color>-->
+    <!--<color name="rapido_orange_translucent">#55ff8235</color>-->
+    <!--<color name="rapido_orange_translucent_pressed">#aaff8235</color>-->
+
+    <color name="rapido_orange_light">#ffff9d60</color>
+    <color name="rapido_orange_light_translucent">#55ff9d60</color>
+    <color name="rapido_orange_light_translucent_pressed">#aaff9d60</color>
+
+    <color name="rapido_orange_dark">#ffff6505</color>
+    <color name="rapido_orange_dark_translucent">#55ff6505</color>
+    <color name="rapido_orange_dark_translucent_pressed">#aaff6505</color>
+
+    <color name="rapido_yellow">#ffffb335</color>
+    <color name="rapido_yellow_translucent">#55ffb335</color>
+    <color name="rapido_yellow_translucent_pressed">#aaffb335</color>
+
+    <color name="rapido_yellow_light">#ffffc360</color>
+    <color name="rapido_yellow_light_translucent">#55ffc360</color>
+    <color name="rapido_yellow_light_translucent_pressed">#aaffc360</color>
+
+    <color name="rapido_yellow_dark">#ffffa105</color>
+    <color name="rapido_yellow_dark_translucent">#55ffa105</color>
+    <color name="rapido_yellow_dark_translucent_pressed">#aaffa105</color>
+
+    <color name="rapido_pink">#ffff3555</color>
+    <color name="rapido_pink_translucent">#55ff3555</color>
+    <color name="rapido_pink_translucent_pressed">#aaff3555</color>
+
+    <color name="rapido_pink_light">#ffff6079</color>
+    <color name="rapido_pink_light_translucent">#55ff6079</color>
+    <color name="rapido_pink_light_translucent_pressed">#aaff6079</color>
+
+    <color name="rapido_pink_dark">#ffff052c</color>
+    <color name="rapido_pink_dark_translucent">#55ff052c</color>
+    <color name="rapido_pink_dark_translucent_pressed">#aaff052c</color>
+
+    <color name="rapido_cyan">#ff35ffd2</color>
+    <color name="rapido_cyan_translucent">#5535ffd2</color>
+    <color name="rapido_cyan_translucent_pressed">#aa35ffd2</color>
+
+    <color name="rapido_cyan_light">#ff60ffdb</color>
+    <color name="rapido_cyan_light_translucent">#5560ffdb</color>
+    <color name="rapido_cyan_light_translucent_pressed">#aa60ffdb</color>
+
+    <color name="rapido_cyan_lighter">#ff91fee6</color>
+    <color name="rapido_cyan_lighter_translucent">#5591fee6</color>
+    <color name="rapido_cyan_lighter_translucent_pressed">#aa91fee6</color>
+
+    <color name="rapido_cyan_dark">#ff05ffc7</color>
+    <color name="rapido_cyan_dark_translucent">#5505ffc7</color>
+    <color name="rapido_cyan_dark_translucent_pressed">#aa05ffc7</color>
+</resources>

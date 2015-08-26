@@ -1,0 +1,51 @@
+<resources>
+
+    <style name="Theme.Rapido" parent="Theme.Rapido.Base" />
+
+    <style name="Theme.Rapido.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/gray_light</item>
+        <item name="colorAccent">@color/accent</item>
+
+        <item name="android:textColor">@color/primary_text</item>
+
+        <!--<item name="android:textSize">@dimen/material_type_small</item>-->
+    </style>
+
+    <style name="Theme.Rapido.Orange" parent="Theme.Rapido">
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/primary</item>
+    </style>
+
+    <style name="Theme.Rapido.Plus" parent="Theme.Rapido">
+        <item name="colorPrimary">@color/plus</item>
+        <item name="colorPrimaryDark">@color/plus_dark</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="Theme.Rapido.Facebook" parent="Theme.Rapido">
+        <item name="colorPrimary">@color/facebook</item>
+        <item name="colorPrimaryDark">@color/facebook_dark</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="Theme.Rapido.Foursquare" parent="Theme.Rapido">
+        <item name="colorPrimary">@color/foursquare</item>
+        <item name="colorPrimaryDark">@color/foursquare_dark</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="Theme.Rapido.Twitter" parent="Theme.Rapido">
+        <item name="colorPrimary">@color/twitter</item>
+        <item name="colorPrimaryDark">@color/twitter_dark</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="Theme.Rapido.Bitly" parent="Theme.Rapido">
+        <item name="colorPrimary">@color/bitly</item>
+        <item name="colorPrimaryDark">@color/bitly_dark</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="Theme.Rapido.Full" parent="Theme.Rapido" />
+</resources>

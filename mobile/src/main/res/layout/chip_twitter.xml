@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.thunsaker.rapido.ui.widget.CheckableImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/material_icon_size_micro"
+    android:layout_height="@dimen/material_icon_size_micro"
+    android:layout_margin="@dimen/material_padding"
+    android:padding="@dimen/material_padding"
+    android:clickable="true"
+    android:background="@drawable/circle_twitter"
+    android:src="@drawable/selector_twitter_icon"
+    android:tint="@color/white"
+    android:contentDescription="@string/accounts_twitter" />

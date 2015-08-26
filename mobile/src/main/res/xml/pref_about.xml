@@ -1,0 +1,8 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:key="@string/prefs_key_about_version"
+        android:title="@string/about_version_title"
+        android:summary="@string/app_version"/>
+
+</PreferenceScreen>
