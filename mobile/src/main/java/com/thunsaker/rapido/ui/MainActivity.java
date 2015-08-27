@@ -9,12 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.crashlytics.android.Crashlytics;
 import com.github.mrengineer13.snackbar.SnackBar;
 import com.thunsaker.android.common.annotations.ForApplication;
 import com.thunsaker.rapido.R;
 import com.thunsaker.rapido.RapidoPrefsManager;
 import com.thunsaker.rapido.app.BaseRapidoActivity;
 
+import io.fabric.sdk.android.Fabric;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
@@ -56,6 +58,7 @@ public class MainActivity extends BaseRapidoActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.activity_main);
 
@@ -85,9 +88,11 @@ public class MainActivity extends BaseRapidoActivity {
 
         mFragmentManager = getSupportFragmentManager();
 
-        if(savedInstanceState != null) {
-            mMainFragment = (MainFragment) mFragmentManager.findFragmentByTag(TAG_MAIN_FRAGMENT);
-        } else if(mMainFragment == null) {
+        mMainFragment = (MainFragment) mFragmentManager.findFragmentByTag(TAG_MAIN_FRAGMENT);
+
+//        if(savedInstanceState != null) {
+//        } else
+        if(mMainFragment == null) {
             if(receivedText != null && receivedText.length() > 0)
                 mMainFragment = MainFragment.newInstance(receivedText);
             else

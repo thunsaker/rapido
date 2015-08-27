@@ -98,6 +98,7 @@
                 android:layout_marginStart="@dimen/material_keyline_1"
                 android:layout_marginRight="@dimen/material_keyline_1"
                 android:layout_marginEnd="@dimen/material_keyline_1"
+                android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
                 android:imeOptions="flagNoExtractUi" />
 
             <TextView

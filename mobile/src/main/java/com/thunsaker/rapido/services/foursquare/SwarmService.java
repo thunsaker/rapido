@@ -2,6 +2,7 @@ package com.thunsaker.rapido.services.foursquare;
 
 import com.thunsaker.rapido.data.api.model.PostUserCheckinResponse;
 
+import retrofit.http.Body;
 import retrofit.http.POST;
 import retrofit.http.Query;
 import rx.Observable;
@@ -19,6 +20,7 @@ public interface SwarmService {
      */
     @POST("/checkins/add")
     Observable<PostUserCheckinResponse> postUserCheckin(
+            @Body String body, // https://github.com/square/retrofit/issues/854
             @Query("oauth_token") String oauth_token,
             @Query("venueId") String venueId,
             @Query("ll") String latLong
@@ -37,6 +39,7 @@ public interface SwarmService {
      */
     @POST("/checkins/add")
     Observable<PostUserCheckinResponse> postUserCheckinWithShout(
+            @Body String body, // https://github.com/square/retrofit/issues/854
             @Query("oauth_token") String oauth_token,
             @Query("venueId") String venueId,
             @Query("shout") String shout,

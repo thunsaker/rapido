@@ -48,6 +48,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.Bind;
 import de.greenrobot.event.EventBus;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
@@ -59,11 +60,8 @@ public class LocationPicker extends BaseRapidoActivity
         GoogleApiClient.OnConnectionFailedListener,
         AbsListView.OnItemClickListener {
 
-    @Inject @ForApplication
-    Context mContext;
-
-    @Inject
-    EventBus mBus;
+//    @Inject
+//    EventBus mBus;
 
     @Inject
     FoursquareService mFoursquareService;
@@ -75,6 +73,8 @@ public class LocationPicker extends BaseRapidoActivity
     @Bind(R.id.location_list_container) SwipeRefreshLayout mSwipeViewVenueList;
     @Bind(R.id.location_list) ListView mListView;
     @Bind(R.id.map_wrapper) FrameLayout mMapWrapper;
+
+    public Subscription foursquareServiceSubscription;
 
     public static GoogleApiClient mGoogleClient;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
@@ -94,6 +94,9 @@ public class LocationPicker extends BaseRapidoActivity
 
         setSupportActionBar(mToolbar);
         setTitle(null);
+
+//        if(mBus != null && !mBus.isRegistered(this))
+//            mBus.register(this);
 
 //        int backgroundFromColor;
 //        getWindow().setBackgroundDrawable(
@@ -137,35 +140,39 @@ public class LocationPicker extends BaseRapidoActivity
 
             String accessToken = mPreferences.foursquareToken().getOr("");
             if(accessToken != null && accessToken.length() > 0) {
-                mFoursquareService
-                        .searchVenuesNearby(
-                                accessToken,
-                                latLngString,
-                                "",
-                                FoursquarePrefs.DEFAULT_SEARCH_LIMIT,
-                                FoursquarePrefs.FOURSQUARE_SEARCH_INTENT_CHECKIN,
-                                FoursquarePrefs.DEFAULT_SEARCH_RADIUS)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .map(MapFoursquareVenueResponse())
-                        .subscribe(AddVenuesToList());
+                foursquareServiceSubscription =
+                        mFoursquareService
+                                .searchVenuesNearby(
+                                        accessToken,
+                                        latLngString,
+                                        "",
+                                        FoursquarePrefs.DEFAULT_SEARCH_LIMIT,
+                                        FoursquarePrefs.FOURSQUARE_SEARCH_INTENT_CHECKIN,
+                                        FoursquarePrefs.DEFAULT_SEARCH_RADIUS)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .map(MapFoursquareVenueResponse())
+                                .subscribe(AddVenuesToList());
             } else {
-                mFoursquareService
-                        .searchVenuesNearbyUserless(
-                                AuthHelper.FOURSQUARE_CLIENT_ID,
-                                AuthHelper.FOURSQUARE_CLIENT_SECRET,
-                                latLngString,
-                                "",
-                                FoursquarePrefs.DEFAULT_SEARCH_LIMIT,
-                                FoursquarePrefs.FOURSQUARE_SEARCH_INTENT_CHECKIN,
-                                FoursquarePrefs.DEFAULT_SEARCH_RADIUS)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .map(MapFoursquareVenueResponse())
-                        .subscribe(AddVenuesToList());
+                foursquareServiceSubscription =
+                        mFoursquareService
+                                .searchVenuesNearbyUserless(
+                                        AuthHelper.FOURSQUARE_CLIENT_ID,
+                                        AuthHelper.FOURSQUARE_CLIENT_SECRET,
+                                        latLngString,
+                                        "",
+                                        FoursquarePrefs.DEFAULT_SEARCH_LIMIT,
+                                        FoursquarePrefs.FOURSQUARE_SEARCH_INTENT_CHECKIN,
+                                        FoursquarePrefs.DEFAULT_SEARCH_RADIUS)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .map(MapFoursquareVenueResponse())
+                                .subscribe(AddVenuesToList());
             }
         } else
-            new SnackBar.Builder(this).withMessage("No Location :(").show();
+            new SnackBar.Builder(this)
+                    .withMessage(getString(R.string.error_location_unknown))
+                    .show();
 
     }
 
@@ -211,7 +218,7 @@ public class LocationPicker extends BaseRapidoActivity
 
         if(currentVenueListAdapter == null)
             currentVenueListAdapter =
-                    new VenueListAdapter(mContext, currentVenueList);
+                    new VenueListAdapter(this, currentVenueList);
 
         currentVenueListAdapter.notifyDataSetChanged();
         mListView.setAdapter(currentVenueListAdapter);
@@ -238,10 +245,15 @@ public class LocationPicker extends BaseRapidoActivity
 
         if(id == R.id.action_close) {
             setResult(Activity.RESULT_CANCELED);
-
-            finish();
+            foursquareServiceSubscription.unsubscribe();
+            ShutItDown();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void ShutItDown() {
+        foursquareServiceSubscription.unsubscribe();
+        finish();
     }
 
     @Override
@@ -356,12 +368,6 @@ public class LocationPicker extends BaseRapidoActivity
         } else {
             setResult(Activity.RESULT_CANCELED);
         }
-        finish();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
+        ShutItDown();
     }
 }

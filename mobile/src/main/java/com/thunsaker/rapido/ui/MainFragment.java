@@ -181,6 +181,8 @@ public class MainFragment extends BaseRapidoFragment
 
     private static final String ARG_RECEIVED_TEXT = "ARG_RECEIVED_TEXT";
 
+    private UpdateEvent mUpdateEventData;
+
     private enum PendingAction {
         NONE,
         POST_PHOTO,
@@ -599,7 +601,7 @@ public class MainFragment extends BaseRapidoFragment
             UpdatePendingUpdateServices(mChipFoursquare, UpdateService.SERVICE_FOURSQUARE);
             if(CurrentPickedLocation == null)
                 mButtonLocationAdd.performClick();
-//                ShowLocationPicker();
+                ShowLocationPicker();
         }
     }
 
@@ -772,7 +774,7 @@ public class MainFragment extends BaseRapidoFragment
                     MainActivity.mFoursquareEnabled = mPreferences.foursquareEnabled().getOr(false);
 
                     mButtonLocationAdd.performClick();
-//                    ShowLocationPicker();
+                    ShowLocationPicker();
 
                     PopSnackBar(
                             String.format(
@@ -855,6 +857,14 @@ public class MainFragment extends BaseRapidoFragment
                 facebookCallbackManager.onActivityResult(requestCode, resultCode, data);
                 break;
         }
+    }
+
+    private void ShowLocationPicker() {
+        startActivityForResult(
+                new Intent(
+                        mContext,
+                        LocationPicker.class),
+                REQUEST_CODE_LOCATION_PICKER);
     }
 
     private void ShowPickedLocationInfo() {
@@ -1033,6 +1043,7 @@ public class MainFragment extends BaseRapidoFragment
 
 //        this.getActivity().finish();
         mComposeText.setText("");
+        ClearPickedLocation();
     }
 
     private void UpdateFacebook(final String updateText) {
@@ -1130,6 +1141,7 @@ public class MainFragment extends BaseRapidoFragment
                     final String finalUpdateText = updateText;
                     mSwarmService
                             .postUserCheckinWithShout(
+                                    "Non est corpus.",
                                     accessToken,
                                     CurrentPickedLocation.getFoursquareVenueId(),
                                     finalUpdateText,
@@ -1406,5 +1418,9 @@ public class MainFragment extends BaseRapidoFragment
     private Intent addWaveColorToIntent(Intent intent, int color) {
         intent.putExtra(WaveCompat.IntentKey.BACKGROUND_COLOR, color);
         return intent;
+    }
+
+    public void setData(UpdateEvent data) {
+        this.mUpdateEventData = data;
     }
 }
