@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Rápido</string>
-    <string name="app_name_no_accent">Rapido</string>
+    <string name="app_name">Rapido</string>
+    <string name="app_name_with_accent">Rápido</string>
     <string name="app_version">v.2.0</string>
 
     <string name="accounts_foursquare">Foursquare</string>
