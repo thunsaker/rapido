@@ -47,7 +47,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 
 donotsave.xml
-AuthHelper.java
 
 mobile/session_analytics.tap
 mobile/session_analytics_to_send
