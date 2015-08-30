@@ -33,6 +33,7 @@ import io.fabric.sdk.android.Fabric;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import twitter4j.TwitterFactory;
+import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
 @Module(
@@ -85,9 +86,11 @@ public class RapidoAppModule {
     @Singleton
     twitter4j.Twitter providesTwitter4j() {
         ConfigurationBuilder builder = new ConfigurationBuilder();
-        twitter4j.Twitter twitter4j = TwitterFactory.getSingleton();
-        twitter4j.setOAuthConsumer(AuthHelper.TWITTER_KEY, AuthHelper.TWITTER_SECRET);
-        return twitter4j;
+        builder.setOAuthConsumerKey(AuthHelper.TWITTER_KEY);
+        builder.setOAuthConsumerSecret(AuthHelper.TWITTER_SECRET);
+        Configuration configuration = builder.build();
+        TwitterFactory factory = new TwitterFactory(configuration);
+        return factory.getInstance();
     }
 
     @Provides
