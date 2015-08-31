@@ -26,8 +26,7 @@ android:
     # - sys-img-armeabi-v7a-android-19
 
 script:
-    - ls WaveCompat
-    - ls WaveCompat/wavecompat-library
     - echo "Assembling..."
     - chmod +x ./gradlew
+    - ./gradlew tasks --all -S
     - ./gradlew check --daemon --info --S
