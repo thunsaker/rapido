@@ -27,6 +27,15 @@ android {
     }
     buildTypes {
         debug {
+            buildConfigField("String", "TWITTER_KEY", getEnv("RAPIDO_TWIT_KEY"));
+            buildConfigField("String", "TWITTER_SECRET", getEnv("RAPIDO_TWIT_SECRET"));
+            buildConfigField("String", "BITLY_ID", getEnv("RAPIDO_BIT_ID"));
+            buildConfigField("String", "BITLY_SECRET", getEnv("RAPIDO_BIT_SECRET"));
+            buildConfigField("String", "FOURSQUARE_ID", getEnv("RAPIDO_FOUR_ID"));
+            buildConfigField("String", "FOURSQUARE_SECRET", getEnv("RAPIDO_FOUR_SECRET"));
+            buildConfigField("String", "FACEBOOK_ID", getEnv("RAPIDO_FACE_AUTH_ID"));
+            buildConfigField("String", "MAPS_KEY", getEnv("RAPIDO_MAPS_KEY"));
+
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
             minifyEnabled false
@@ -38,6 +47,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+def getEnv(key, defVal = '') {
+    "\"${System.env.containsKey(key) ? System.env.get(key) : defVal}\""
 }
 
 dependencies {

@@ -4,11 +4,6 @@ jdk: oraclejdk8
 
 android:
   components:
-    # Uncomment the lines below if you want to
-    # use the latest revision of Android SDK Tools
-    # - platform-tools
-    # - tools
-
     # The BuildTools version used by your project
     - build-tools-23.0.0
 
@@ -26,7 +21,6 @@ android:
     # - sys-img-armeabi-v7a-android-19
 
 script:
-    - echo "Assembling..."
+    - echo "It's morphin' time!"
     - chmod +x ./gradlew
-    - ./gradlew tasks --all -S
-    - ./gradlew check --daemon --info --S
+    - ./gradlew check --daemon --info
