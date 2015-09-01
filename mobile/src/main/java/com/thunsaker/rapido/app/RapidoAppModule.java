@@ -3,6 +3,7 @@ package com.thunsaker.rapido.app;
 import android.content.Context;
 import android.support.v4.app.NotificationManagerCompat;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.common.eventbus.EventBus;
 import com.thunsaker.android.common.annotations.ForApplication;
 import com.thunsaker.android.common.dagger.AndroidApplicationModule;
@@ -73,7 +74,7 @@ public class RapidoAppModule {
     @Singleton
     Fabric providesFabric(@ForApplication Context mContext) {
         TwitterAuthConfig authConfig = new TwitterAuthConfig(AuthHelper.TWITTER_KEY, AuthHelper.TWITTER_SECRET);
-        return Fabric.with(mContext, new Twitter(authConfig));
+        return Fabric.with(mContext, new Twitter(authConfig), new Crashlytics());
     }
 
     @Provides
