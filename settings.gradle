@@ -1,1 +1,1 @@
-include ':mobile' , ':foursquare-android-oauth:foursquare-oauth-library', ':wavecompat:wavecompat'
+include ':mobile' , ':foursquare-android-oauth:foursquare-oauth-library', ':WaveCompat:wavecompat-library'

@@ -5,7 +5,6 @@ import android.app.Application;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.squareup.leakcanary.LeakCanary;
 import dagger.ObjectGraph;
 
 public abstract class DaggerApplication extends Application implements Injector {
@@ -14,9 +13,6 @@ public abstract class DaggerApplication extends Application implements Injector 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        // TODO: Remove this later
-        LeakCanary.install(this);
 
         AndroidApplicationModule baseApplicationModule = new AndroidApplicationModule();
 //        baseApplicationModule.xApplicationContext = this.getApplicationContext();

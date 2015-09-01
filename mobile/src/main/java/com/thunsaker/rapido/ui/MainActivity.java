@@ -16,12 +16,12 @@ import com.thunsaker.rapido.R;
 import com.thunsaker.rapido.RapidoPrefsManager;
 import com.thunsaker.rapido.app.BaseRapidoActivity;
 
-import io.fabric.sdk.android.Fabric;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
 import de.greenrobot.event.EventBus;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends BaseRapidoActivity {
     @Inject @ForApplication
@@ -29,6 +29,9 @@ public class MainActivity extends BaseRapidoActivity {
 
     @Inject
     EventBus mBus;
+
+    @Inject
+    Fabric mFabric;
 
     @Inject
     RapidoPrefsManager mPreferences;
@@ -58,7 +61,6 @@ public class MainActivity extends BaseRapidoActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.activity_main);
 

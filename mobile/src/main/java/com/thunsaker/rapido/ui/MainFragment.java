@@ -562,7 +562,9 @@ public class MainFragment extends BaseRapidoFragment
     }
 
     private void TwitterSignOut() {
-        Twitter.logOut();
+        if(Twitter.getInstance() != null)
+            Twitter.logOut();
+
         MainActivity.mTwitterEnabled = false;
 
         mChipTwitter.setChecked(false);
