@@ -15,7 +15,10 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import javax.inject.Inject;
+
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @Config(constants = BuildConfig.class,
         sdk = Build.VERSION_CODES.LOLLIPOP,
@@ -25,12 +28,16 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(RobolectricGradleTestRunner.class)
 
 public class MainActivityTest {
+    @Inject
+    RapidoPrefsManager mPrefs;
+
     private static final String TAG_MAIN_FRAGMENT = "main_fragment";
     private MainActivity activity;
 
     @Before
     public void setup() throws Exception {
         activity = Robolectric.setupActivity(MainActivity.class);
+        activity.inject(this);
     }
 
     @Test
@@ -45,6 +52,23 @@ public class MainActivityTest {
                         .findFragmentByTag(TAG_MAIN_FRAGMENT);
         assertNotNull(mainFragment);
     }
+
+    @Test
+    public void shouldProvideRapidoPrefsManager() throws Exception {
+        assertNotNull(mPrefs);
+    }
+
+    @Test
+    public void shouldDisplayShowcase() throws Exception {
+        if(mPrefs.isFirstLaunch().getOr(false)) {
+            assertTrue(activity.displayShowcase);
+        }
+    }
+
+//    @Test
+//    public void shouldNotDisplayShowcase() throws Exception {
+//
+//    }
 
     @After
     public void teardown() throws Exception {

@@ -58,6 +58,8 @@ public class MainActivity extends BaseRapidoActivity {
     public static String REPOST_GOOGLE_PLUS = "RAPIDO_REPOST_GOOGLE_PLUS";
     public static String REPOST_APP_DOT_NET = "RAPIDO_REPOST_APP_DOT_NET";
 
+    public boolean displayShowcase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +94,6 @@ public class MainActivity extends BaseRapidoActivity {
 
         mMainFragment = (MainFragment) mFragmentManager.findFragmentByTag(TAG_MAIN_FRAGMENT);
 
-//        if(savedInstanceState != null) {
-//        } else
         if(mMainFragment == null) {
             if(receivedText != null && receivedText.length() > 0)
                 mMainFragment = MainFragment.newInstance(receivedText);

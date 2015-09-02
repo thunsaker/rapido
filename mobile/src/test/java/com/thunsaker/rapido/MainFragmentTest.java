@@ -13,7 +13,10 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import javax.inject.Inject;
+
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFragment;
 
 @Config(constants = BuildConfig.class,
@@ -25,7 +28,7 @@ import static org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFr
 
 public class MainFragmentTest {
     private MainFragment fragment;
-    
+
     @Before
     public void setup() throws Exception {
         fragment = MainFragment.newInstance();

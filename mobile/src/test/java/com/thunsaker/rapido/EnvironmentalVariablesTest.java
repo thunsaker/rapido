@@ -22,19 +22,19 @@ import org.robolectric.annotation.Config;
 public class EnvironmentalVariablesTest {
     @Test
     public void hasTwitterKeys() throws Exception {
-        Assert.assertTrue(System.getenv("RAPIDO_TWIT_KEY") != null);
-        Assert.assertTrue(System.getenv("RAPIDO_TWIT_SECRET") != null);
+        Assert.assertNotNull(BuildConfig.TWITTER_KEY);
+        Assert.assertNotNull(BuildConfig.TWITTER_SECRET);
     }
 
     @Test
     public void hasFoursquareKeys() throws Exception {
-        Assert.assertTrue(System.getenv("RAPIDO_FOUR_ID") != null);
-        Assert.assertTrue(System.getenv("RAPIDO_FOUR_SECRET") != null);
+        Assert.assertNotNull(BuildConfig.FOURSQUARE_ID);
+        Assert.assertNotNull(BuildConfig.FOURSQUARE_SECRET);
     }
 
     @Test
     public void hasBitlyKeys() throws Exception {
-        Assert.assertTrue(System.getenv("RAPIDO_BIT_ID") != null);
-        Assert.assertTrue(System.getenv("RAPIDO_BIT_SECRET") != null);
+        Assert.assertNotNull(BuildConfig.BITLY_ID);
+        Assert.assertNotNull(BuildConfig.BITLY_SECRET);
     }
 }

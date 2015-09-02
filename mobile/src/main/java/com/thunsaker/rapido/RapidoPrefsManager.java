@@ -8,6 +8,7 @@ import com.tale.prettysharedpreferences.StringEditor;
 
 public class RapidoPrefsManager extends PrettySharedPreferences<RapidoPrefsManager> {
     private SharedPreferences mPreferences;
+    private boolean firstLaunch;
 
     public RapidoPrefsManager(SharedPreferences sharedPreferences) {
         super(sharedPreferences);
@@ -79,5 +80,9 @@ public class RapidoPrefsManager extends PrettySharedPreferences<RapidoPrefsManag
 
     public StringEditor<RapidoPrefsManager> bitlyApiKey() {
         return getStringEditor("bitly_api_key");
+    }
+
+    public BooleanEditor<RapidoPrefsManager> isFirstLaunch() {
+        return getBooleanEditor("rapido_first_launch");
     }
 }
