@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://jitpack.io" }
     }
     dependencies {
         classpath 'io.fabric.tools:gradle:1.19.2'
@@ -12,6 +13,7 @@ apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
 }
 
 android {
@@ -22,8 +24,8 @@ android {
         applicationId "com.thunsaker.rapido"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "2.0.0"
+        versionCode 20
+        versionName "2.0.1"
     }
 
     buildTypes {
@@ -64,11 +66,11 @@ def getEnv(key, defVal = '') {
 }
 
 dependencies {
-//    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':foursquare-android-oauth:foursquare-oauth-library')
 
     compile 'com.github.mrengineer13:snackbar:1.2.0'
     compile project(':WaveCompat:wavecompat-library')
+    compile 'com.github.deano2390:MaterialShowcaseView:1.0.5@aar'
 
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
@@ -95,7 +97,6 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.0.1'
     compile 'com.jakewharton.rxbinding:rxbinding:0.2.0'
 
-    //    compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
     compile 'com.melnykov:floatingactionbutton:1.1.0'
     compile 'com.github.talenguyen:prettysharedpreferences:1.0.2'
     compile 'com.twitter:twitter-text:1.9.0'

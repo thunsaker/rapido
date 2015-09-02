@@ -63,4 +63,7 @@
     <string name="error_checkin">Checkin failed.</string>
     <string name="alert_title_failed">Failed :(</string>
     <string name="post_retry">Retry</string>
+    <string name="showcase_dismiss_text">Got it</string>
+    <string name="showcase_text_accounts">Log in to your favorite social networks. Pick where you share each update.</string>
+    <string name="showcase_text_bitly">Bit.ly shows up when you have links to share.</string>
 </resources>

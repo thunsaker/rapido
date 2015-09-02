@@ -82,6 +82,7 @@ import com.wangjie.wavecompat.WaveTouchHelper;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -97,6 +98,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import uk.co.deanwild.materialshowcaseview.IShowcaseListener;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 import static com.thunsaker.rapido.services.UpdateService.SERVICE_FACEBOOK;
 import static com.thunsaker.rapido.services.UpdateService.SERVICE_FOURSQUARE;
@@ -105,6 +109,7 @@ import static com.thunsaker.rapido.services.UpdateService.SERVICE_TWITTER;
 public class MainFragment extends BaseRapidoFragment
     implements WaveTouchHelper.OnWaveTouchHelperListener {
 
+    private static final String SHOWCASE_ID = "SHOWCASE_SOCIAL_ICONS";
     @Inject @ForApplication
     Context mContext;
 
@@ -140,8 +145,7 @@ public class MainFragment extends BaseRapidoFragment
     @Bind(R.id.compose_location_text) TextView mTextLocation;
 //    @Bind(R.id.compose_map_wrapper) FrameLayout mWrapperMap;
 
-    @Bind(R.id.compose_wrapper) LinearLayout mComposeWrapper;
-
+    @Bind(R.id.compose_to_chips_wrapper) LinearLayout mComposeToChipsWrapper;
     @Bind(R.id.compose_to_chip_facebook) CheckableImageView mChipFacebook;
     @Bind(R.id.compose_to_chip_twitter) CheckableImageView mChipTwitter;
     @Bind(R.id.compose_to_chip_foursquare) CheckableImageView mChipFoursquare;
@@ -243,6 +247,11 @@ public class MainFragment extends BaseRapidoFragment
         SetupTwitterLogin();
         SetupFacebookLogin();
 
+        if(BuildConfig.DEBUG)
+            MaterialShowcaseView.resetSingleUse(mContext, SHOWCASE_ID);
+
+        SetupShowcaseView();
+
         Bundle args = getArguments();
         if(args != null) {
             String receivedText = args.getString(ARG_RECEIVED_TEXT);
@@ -261,6 +270,36 @@ public class MainFragment extends BaseRapidoFragment
         WaveTouchHelper.bindWaveTouchHelper(mButtonLocationAdd, this);
 
         return rootView;
+    }
+
+    private void SetupShowcaseView() {
+        mChipBitly.setVisibility(View.VISIBLE);
+        mChipBitly.setChecked(true);
+        mChipTwitter.setChecked(true);
+        mChipFacebook.setChecked(true);
+        mChipPlus.setChecked(true);
+        mChipFoursquare.setChecked(true);
+
+        new MaterialShowcaseView.Builder(getActivity())
+                .setTarget(mComposeToChipsWrapper)
+                .setDelay(1000)
+                .setDismissText(getString(R.string.showcase_dismiss_text).toUpperCase(Locale.getDefault()))
+                .setContentText(R.string.showcase_text_accounts)
+                .setMaskColour(R.color.accent)
+                .singleUse(SHOWCASE_ID)
+                .setListener(new IShowcaseListener() {
+                    @Override
+                    public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+                        hideKeyboard();
+                    }
+
+                    @Override
+                    public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+                        SetupAccountList();
+                        showKeyboard();
+                    }
+                })
+                .show();
     }
 
     private void handlePendingUpdate() {
@@ -1386,6 +1425,12 @@ public class MainFragment extends BaseRapidoFragment
         InputMethodManager inputMethodManager =
                 (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mComposeText.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    private void showKeyboard() {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(mComposeText, InputMethodManager.SHOW_IMPLICIT);
     }
 
 //    @OnClick(R.id.compose_to_text)

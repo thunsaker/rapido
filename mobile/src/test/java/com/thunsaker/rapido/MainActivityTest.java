@@ -17,6 +17,7 @@ import org.robolectric.annotation.Config;
 
 import javax.inject.Inject;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -57,18 +58,6 @@ public class MainActivityTest {
     public void shouldProvideRapidoPrefsManager() throws Exception {
         assertNotNull(mPrefs);
     }
-
-    @Test
-    public void shouldDisplayShowcase() throws Exception {
-        if(mPrefs.isFirstLaunch().getOr(false)) {
-            assertTrue(activity.displayShowcase);
-        }
-    }
-
-//    @Test
-//    public void shouldNotDisplayShowcase() throws Exception {
-//
-//    }
 
     @After
     public void teardown() throws Exception {

@@ -58,8 +58,6 @@ public class MainActivity extends BaseRapidoActivity {
     public static String REPOST_GOOGLE_PLUS = "RAPIDO_REPOST_GOOGLE_PLUS";
     public static String REPOST_APP_DOT_NET = "RAPIDO_REPOST_APP_DOT_NET";
 
-    public boolean displayShowcase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
