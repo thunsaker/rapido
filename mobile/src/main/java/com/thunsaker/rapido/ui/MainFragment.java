@@ -14,7 +14,6 @@ import android.os.Parcelable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,7 +99,6 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import uk.co.deanwild.materialshowcaseview.IShowcaseListener;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
-import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 import static com.thunsaker.rapido.services.UpdateService.SERVICE_FACEBOOK;
 import static com.thunsaker.rapido.services.UpdateService.SERVICE_FOURSQUARE;
@@ -174,7 +172,6 @@ public class MainFragment extends BaseRapidoFragment
     public final int CHAR_LIMIT_TWITTER = 140;
 
     CallbackManager facebookCallbackManager;
-    private TextWatcher mComposeTextWatcher;
     private Intent genericIntent;
     private PendingIntent genericPendingIntent;
 
@@ -517,6 +514,17 @@ public class MainFragment extends BaseRapidoFragment
                                     UpdateService.SERVICE_FACEBOOK);
                     }
                 });
+
+        // Listen for the facebook button to change text
+        RxTextView.textChangeEvents(mFacebookLogin)
+                .subscribe(new Action1<TextViewTextChangeEvent>() {
+                    @Override
+                    public void call(TextViewTextChangeEvent onTextViewTextChangeEvent) {
+                        if(mFacebookLogin.getText().toString().contains("Log in")) {
+                            FacebookSignOut();
+                        }
+                    }
+                });
     }
 
     public void SetupAccountList() {
@@ -557,8 +565,7 @@ public class MainFragment extends BaseRapidoFragment
     @OnLongClick(R.id.compose_to_chip_facebook)
     public boolean FacebookChipLongClick() {
         if(MainActivity.mFacebookEnabled) {
-            mFacebookLogin.clearPermissions();
-            FacebookSignOut();
+            mFacebookLogin.performClick();
             return true;
         }
 
@@ -573,6 +580,7 @@ public class MainFragment extends BaseRapidoFragment
                 .apply();
 
         mChipFacebook.setChecked(false);
+        mFacebookLogin.clearPermissions();
         UpdatePendingUpdateServices(mChipFacebook, UpdateService.SERVICE_FACEBOOK);
 
         PopSnackBar(
@@ -894,7 +902,7 @@ public class MainFragment extends BaseRapidoFragment
                 } catch (Exception ex) {
                     Log.e(LOG_TAG, ex.getMessage());
                 }
-
+                Log.e(LOG_TAG, "Facebook callback here?");
                 facebookCallbackManager.onActivityResult(requestCode, resultCode, data);
                 break;
         }
