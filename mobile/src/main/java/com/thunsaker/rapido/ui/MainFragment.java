@@ -520,7 +520,7 @@ public class MainFragment extends BaseRapidoFragment
                 .subscribe(new Action1<TextViewTextChangeEvent>() {
                     @Override
                     public void call(TextViewTextChangeEvent onTextViewTextChangeEvent) {
-                        if(mFacebookLogin.getText().toString().contains("Log in")) {
+                        if(mFacebookLogin.getText().toString().contains("Log in") && mPreferences.facebookEnabled().getOr(false)) {
                             FacebookSignOut();
                         }
                     }
