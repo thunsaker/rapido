@@ -70,7 +70,8 @@ dependencies {
 
     compile 'com.github.mrengineer13:snackbar:1.2.0'
     compile project(':WaveCompat:wavecompat-library')
-    compile 'com.github.deano2390:MaterialShowcaseView:1.0.5@aar'
+//    compile 'com.github.deano2390:MaterialShowcaseView:1.0.5@aar'
+    compile project(':MaterialShowcaseView:library')
 
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 

@@ -281,6 +281,7 @@ public class MainFragment extends BaseRapidoFragment
                 .setTarget(mComposeToChipsWrapper)
                 .setDelay(1000)
                 .setDismissText(getString(R.string.showcase_dismiss_text).toUpperCase(Locale.getDefault()))
+//                .setDismissTextBackgroundColor(R.color.accent)
                 .setContentText(R.string.showcase_text_accounts)
                 .setMaskColour(R.color.accent)
                 .singleUse(SHOWCASE_ID)
@@ -294,6 +295,9 @@ public class MainFragment extends BaseRapidoFragment
                     public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
                         SetupAccountList();
                         showKeyboard();
+                        // Reset the status bar color until the MaterialShowcaseView bug is fixed
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                            getActivity().getWindow().setStatusBarColor(mContext.getResources().getColor(R.color.gray_light));
                     }
                 })
                 .show();
