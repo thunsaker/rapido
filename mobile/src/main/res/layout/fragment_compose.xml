@@ -192,6 +192,8 @@
                 android:elevation="5dp"
                 android:textColor="@color/white"
                 android:text="@string/action_send"
+                android:textSize="14sp"
+                android:textAllCaps="true"
                 android:background="@drawable/background_button_rectangle"
                 tools:ignore="UnusedAttribute" />
         </RelativeLayout>
