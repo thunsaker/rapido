@@ -30,3 +30,9 @@
 #Facebook
 -keep class com.facebook.** { *; }
 -keepattributes Signature
+
+#AboutLibraries
+-keep class .R
+-keep class .R$* {
+    <fields>;
+}
