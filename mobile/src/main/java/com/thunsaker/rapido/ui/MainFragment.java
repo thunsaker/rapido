@@ -244,8 +244,8 @@ public class MainFragment extends BaseRapidoFragment
         SetupTwitterLogin();
         SetupFacebookLogin();
 
-        if(BuildConfig.DEBUG)
-            MaterialShowcaseView.resetSingleUse(mContext, SHOWCASE_ID);
+//        if(BuildConfig.DEBUG)
+//            MaterialShowcaseView.resetSingleUse(mContext, SHOWCASE_ID);
 
         SetupShowcaseView();
 
