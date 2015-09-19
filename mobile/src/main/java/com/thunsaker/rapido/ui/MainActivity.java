@@ -133,7 +133,7 @@ public class MainActivity extends BaseRapidoActivity {
             new LibsBuilder()
                     .withLibraries("Eventbus","Dagger","LeakCanary","Retrofit","Butterknife",
                             "OkHttp","rxAndroid","FloatingActionButton","foursquareAndroidOauth",
-                            "RxBinding")
+                            "RxBinding","TwitterText","PrettySharedPreferences")
                     .withAutoDetect(true)
                     .withLicenseShown(true)
                     .withVersionShown(true)
@@ -141,10 +141,10 @@ public class MainActivity extends BaseRapidoActivity {
                     .withActivityTheme(R.style.Theme_Rapido_White)
                     .start(MainActivity.this);
             return true;
-        } else if (id == R.id.action_sign_out) {
-            PopSnackBar("Sign Out of All the Things!");
-//            startActivity(new Intent(mContext, AboutActivity.class));
-            return true;
+//        } else if (id == R.id.action_sign_out) {
+//            PopSnackBar("Sign Out of All the Things!");
+////            startActivity(new Intent(mContext, AboutActivity.class));
+//            return true;
         }
 
         return super.onOptionsItemSelected(item);
