@@ -11,6 +11,8 @@ import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
 import com.github.mrengineer13.snackbar.SnackBar;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.thunsaker.android.common.annotations.ForApplication;
 import com.thunsaker.rapido.R;
 import com.thunsaker.rapido.RapidoPrefsManager;
@@ -117,8 +119,7 @@ public class MainActivity extends BaseRapidoActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // TODO: No settings menu for right now.
-//        getMenuInflater().inflate(R.menu.global, menu);
+        getMenuInflater().inflate(R.menu.global, menu);
         return true;
     }
 
@@ -126,9 +127,24 @@ public class MainActivity extends BaseRapidoActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            startActivity(new Intent(mContext, SettingsActivity.class));
+        if (id == R.id.action_about) {
+            PopSnackBar("About Screen");
+            // TODO: Add about libs here
+            new LibsBuilder()
+                    .withLibraries("Eventbus","Dagger","LeakCanary","Retrofit","Butterknife",
+                            "OkHttp","rxAndroid","FloatingActionButton","foursquareAndroidOauth",
+                            "RxBinding","TwitterText","PrettySharedPreferences")
+                    .withAutoDetect(true)
+                    .withLicenseShown(true)
+                    .withVersionShown(true)
+                    .withActivityTitle(getString(R.string.action_about))
+                    .withActivityTheme(R.style.Theme_Rapido_White)
+                    .start(MainActivity.this);
             return true;
+//        } else if (id == R.id.action_sign_out) {
+//            PopSnackBar("Sign Out of All the Things!");
+////            startActivity(new Intent(mContext, AboutActivity.class));
+//            return true;
         }
 
         return super.onOptionsItemSelected(item);
