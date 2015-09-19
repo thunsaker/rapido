@@ -4,7 +4,7 @@
     android:layout_width="@dimen/material_icon_size_micro"
     android:layout_height="@dimen/material_icon_size_micro"
     android:layout_margin="@dimen/material_padding"
-    android:padding="@dimen/material_padding"
+    android:padding="5dp"
     android:clickable="true"
     android:background="@drawable/circle_plus"
     android:src="@drawable/selector_plus_icon"
