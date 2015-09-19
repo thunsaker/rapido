@@ -60,7 +60,7 @@ public class NotificationFactory {
             mTitle = mContext.getString(R.string.alert_title_posting);
 
         if(mSmallIcon == 0)
-            mSmallIcon = R.drawable.ic_stat_rabbit;
+            mSmallIcon = R.drawable.ic_stat_rapido_bolt;
 
         if(mColor == 0)
             mColor = R.color.primary;

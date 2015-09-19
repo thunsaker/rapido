@@ -3,8 +3,8 @@
     <string name="app_name">Rapido</string>
     <string name="app_name_with_accent">Rápido</string>
     <string name="app_version">v.2.0</string>
-    <!--<string name="google_maps_key">[GOOGLE_MAPS_API_KEY_HERE]</string>-->
-    <!--<string name="facebook_app_id">[FACEBOOK_APP_ID_HERE]</string>-->
+    <string name="google_maps_key">[GOOGLE_MAPS_API_KEY_HERE]</string>
+    <string name="facebook_app_id">[FACEBOOK_APP_ID_HERE]</string>
 
     <string name="accounts_foursquare">Foursquare</string>
     <string name="accounts_google_plus">Google Plus</string>
