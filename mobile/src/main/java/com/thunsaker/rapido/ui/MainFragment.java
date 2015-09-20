@@ -244,9 +244,6 @@ public class MainFragment extends BaseRapidoFragment
         SetupTwitterLogin();
         SetupFacebookLogin();
 
-//        if(BuildConfig.DEBUG)
-//            MaterialShowcaseView.resetSingleUse(mContext, SHOWCASE_ID);
-
         SetupShowcaseView();
 
         Bundle args = getArguments();
@@ -270,12 +267,8 @@ public class MainFragment extends BaseRapidoFragment
     }
 
     private void SetupShowcaseView() {
-        mChipBitly.setVisibility(View.VISIBLE);
-        mChipBitly.setChecked(true);
-        mChipTwitter.setChecked(true);
-        mChipFacebook.setChecked(true);
-        mChipPlus.setChecked(true);
-        mChipFoursquare.setChecked(true);
+//        if(BuildConfig.DEBUG)
+//            MaterialShowcaseView.resetSingleUse(mContext, SHOWCASE_ID);
 
         new MaterialShowcaseView.Builder(getActivity())
                 .setTarget(mComposeToChipsWrapper)
@@ -288,6 +281,12 @@ public class MainFragment extends BaseRapidoFragment
                 .setListener(new IShowcaseListener() {
                     @Override
                     public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+                        mChipBitly.setVisibility(View.VISIBLE);
+                        mChipBitly.setChecked(true);
+                        mChipTwitter.setChecked(true);
+                        mChipFacebook.setChecked(true);
+                        mChipPlus.setChecked(true);
+                        mChipFoursquare.setChecked(true);
                         hideKeyboard();
                     }
 
