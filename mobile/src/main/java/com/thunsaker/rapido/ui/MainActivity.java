@@ -1,17 +1,21 @@
 package com.thunsaker.rapido.ui;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.crashlytics.android.Crashlytics;
 import com.github.mrengineer13.snackbar.SnackBar;
-import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.thunsaker.android.common.annotations.ForApplication;
 import com.thunsaker.rapido.R;
@@ -85,7 +89,7 @@ public class MainActivity extends BaseRapidoActivity {
             if (Intent.ACTION_SEND.equals(action)) {
                 receivedText = receivedIntent.getStringExtra(Intent.EXTRA_TEXT);
                 String subjectText = receivedIntent.getStringExtra(Intent.EXTRA_SUBJECT);
-                if(subjectText != null && subjectText.length() > 0)
+                if (subjectText != null && subjectText.length() > 0)
                     receivedText = String.format("%s - %s", receivedIntent.getStringExtra(Intent.EXTRA_SUBJECT), receivedText);
             }
         }
@@ -106,6 +110,20 @@ public class MainActivity extends BaseRapidoActivity {
                     .beginTransaction()
                     .replace(R.id.container_top, mMainFragment, TAG_MAIN_FRAGMENT)
                     .commit();
+        }
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TypedValue typedValue = new TypedValue();
+            Resources.Theme theme = getTheme();
+            theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+            int color = typedValue.data;
+
+            Bitmap bitmap =
+                    BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_overview);
+            ActivityManager.TaskDescription taskDescription =
+                    new ActivityManager.TaskDescription(null, bitmap, color);
+
+            setTaskDescription(taskDescription);
+            bitmap.recycle();
         }
     }
 
