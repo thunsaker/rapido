@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -90,6 +91,8 @@ import butterknife.OnClick;
 import butterknife.OnLongClick;
 import de.greenrobot.event.EventBus;
 import io.fabric.sdk.android.Fabric;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import rx.android.schedulers.AndroidSchedulers;
@@ -179,6 +182,8 @@ public class MainFragment extends BaseRapidoFragment
     private static final String ARG_RECEIVED_TEXT = "ARG_RECEIVED_TEXT";
 
     private UpdateEvent mUpdateEventData;
+    private int PLACE_SEARCH_RADIUS = 500;
+    private int PLACE_SEARCH_COUNT = 2;
 
     private enum PendingAction {
         NONE,
@@ -519,7 +524,7 @@ public class MainFragment extends BaseRapidoFragment
                 .subscribe(new Action1<TextViewTextChangeEvent>() {
                     @Override
                     public void call(TextViewTextChangeEvent onTextViewTextChangeEvent) {
-                        if(mFacebookLogin.getText().toString().contains("Log in") && mPreferences.facebookEnabled().getOr(false)) {
+                        if (mFacebookLogin.getText().toString().contains("Log in") && mPreferences.facebookEnabled().getOr(false)) {
                             FacebookSignOut();
                         }
                     }
@@ -1090,7 +1095,7 @@ public class MainFragment extends BaseRapidoFragment
         UpdateGooglePlus(update);
 
         mComposeText.setText("");
-        ClearPickedLocation();
+        HidePickedLocation();
 //        this.getActivity().finish(); // TODO: Consider addressing this with a background service
     }
 
@@ -1108,37 +1113,49 @@ public class MainFragment extends BaseRapidoFragment
                     ServiceNotifications.FACEBOOK_NOTIFICATION,
                     mNotificationFacebookBuilder.build());
 
-            JSONObject params = new JSONObject();
+            final JSONObject params = new JSONObject();
             try {
                 params.put("message", updateText);
                 params.put("description", "Posting from Rápido for Android");
                 if(mLinksInText != null && mLinksInText.size() > 0)
                     params.put("link", mLinksInText.get(0));
+
+                if(CurrentPickedLocation != null) {
+                    String placeId = "";
+                    Location venueLocation = new Location(MainActivity.currentLocation);
+                    venueLocation.setLatitude(CurrentPickedLocation.getLatitude());
+                    venueLocation.setLongitude(CurrentPickedLocation.getLongitude());
+                    GraphRequest.newPlacesSearchRequest(AccessToken.getCurrentAccessToken(),
+                            venueLocation, PLACE_SEARCH_RADIUS, PLACE_SEARCH_COUNT,
+                            CurrentPickedLocation.getName(), new GraphRequest.GraphJSONArrayCallback() {
+                                @Override
+                                public void onCompleted(JSONArray jsonArray, GraphResponse graphResponse) {
+                                    if (graphResponse.getError() != null) {
+                                        sendFacebookPostRequest(updateText, params);
+                                        // TODO: Can't find location...so should we post anyway?
+//                                        mBus.post(
+//                                                new UpdateEvent(
+//                                                        false, graphResponse.getError().getErrorMessage(),
+//                                                        UpdateServiceResult.RESULT_FAILURE,
+//                                                        updateText,
+//                                                        Collections.singletonList(UpdateService.SERVICE_FACEBOOK)));
+                                    } else {
+                                        try {
+                                            JSONObject blah = jsonArray.getJSONObject(0);
+                                            params.put("place", blah.getString("id"));
+                                            sendFacebookPostRequest(updateText, params);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
+                            }).executeAsync();
+                } else {
+                    sendFacebookPostRequest(updateText, params);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            GraphRequest.newPostRequest(AccessToken.getCurrentAccessToken(),
-                    "me/feed", params, new GraphRequest.Callback() {
-                        @Override
-                        public void onCompleted(GraphResponse graphResponse) {
-                            if (graphResponse.getError() != null) {
-                                mBus.post(
-                                        new UpdateEvent(
-                                                false, graphResponse.getError().getErrorMessage(),
-                                                UpdateServiceResult.RESULT_FAILURE,
-                                                updateText,
-                                                Collections.singletonList(UpdateService.SERVICE_FACEBOOK)));
-                            } else {
-                                mBus.post(
-                                        new UpdateEvent(
-                                                true, "",
-                                                UpdateServiceResult.RESULT_SUCCESS,
-                                                updateText,
-                                                Collections.singletonList(UpdateService.SERVICE_FACEBOOK)));
-                            }
-                        }
-                    }).executeAsync();
         }
     }
 
@@ -1255,7 +1272,30 @@ public class MainFragment extends BaseRapidoFragment
                 }
             }
         }
+    }
 
+    private void sendFacebookPostRequest(final String updateText, JSONObject params) {
+        GraphRequest.newPostRequest(AccessToken.getCurrentAccessToken(),
+                "me/feed", params, new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse graphResponse) {
+                        if (graphResponse.getError() != null) {
+                            mBus.post(
+                                    new UpdateEvent(
+                                            false, graphResponse.getError().getErrorMessage(),
+                                            UpdateServiceResult.RESULT_FAILURE,
+                                            updateText,
+                                            Collections.singletonList(UpdateService.SERVICE_FACEBOOK)));
+                        } else {
+                            mBus.post(
+                                    new UpdateEvent(
+                                            true, "",
+                                            UpdateServiceResult.RESULT_SUCCESS,
+                                            updateText,
+                                            Collections.singletonList(UpdateService.SERVICE_FACEBOOK)));
+                        }
+                    }
+                }).executeAsync();
     }
 
     private void ShowRepostNotification(String updateText,
