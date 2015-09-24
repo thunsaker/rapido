@@ -60,7 +60,6 @@ import com.thunsaker.rapido.data.events.UpdateEvent;
 import com.thunsaker.rapido.services.AuthHelper;
 import com.thunsaker.rapido.services.BitlyPrefs;
 import com.thunsaker.rapido.services.BitlyService;
-import com.thunsaker.rapido.services.FacebookTasks;
 import com.thunsaker.rapido.services.ServiceNotifications;
 import com.thunsaker.rapido.services.TwitterTasks;
 import com.thunsaker.rapido.services.UpdateService;
@@ -125,9 +124,6 @@ public class MainFragment extends BaseRapidoFragment
 
     @Inject
     TwitterTasks mTwitterTasks;
-
-    @Inject
-    FacebookTasks mFacebookTasks;
 
     @Inject
     BitlyService mBitlyService;
@@ -1111,12 +1107,13 @@ public class MainFragment extends BaseRapidoFragment
             mNotificationManager.notify(
                     ServiceNotifications.FACEBOOK_NOTIFICATION,
                     mNotificationFacebookBuilder.build());
-            mFacebookTasks.new PostStatusUpdate(updateText).execute();
 
             JSONObject params = new JSONObject();
             try {
                 params.put("message", updateText);
                 params.put("description", "Posting from Rápido for Android");
+                if(mLinksInText != null && mLinksInText.size() > 0)
+                    params.put("link", mLinksInText.get(0));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

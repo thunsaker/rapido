@@ -12,7 +12,6 @@ import com.thunsaker.rapido.RapidoPrefsManager;
 import com.thunsaker.rapido.services.AuthHelper;
 import com.thunsaker.rapido.services.BitlyPrefs;
 import com.thunsaker.rapido.services.BitlyService;
-import com.thunsaker.rapido.services.FacebookTasks;
 import com.thunsaker.rapido.services.TwitterTasks;
 import com.thunsaker.rapido.services.foursquare.FoursquarePrefs;
 import com.thunsaker.rapido.services.foursquare.FoursquareService;
@@ -47,7 +46,6 @@ import twitter4j.conf.ConfigurationBuilder;
                 MainFragment.class,
                 GooglePlusAuthActivity.class,
                 TwitterTasks.class,
-                FacebookTasks.class,
                 NotificationFactory.class,
                 SettingsActivity.class,
                 BitlyAuthActivity.class,
@@ -92,12 +90,6 @@ public class RapidoAppModule {
         Configuration configuration = builder.build();
         TwitterFactory factory = new TwitterFactory(configuration);
         return factory.getInstance();
-    }
-
-    @Provides
-    @Singleton
-    FacebookTasks providesFacebookTasks(@ForApplication Context mContext) {
-        return new FacebookTasks((RapidoApp)mContext);
     }
 
     @Provides
