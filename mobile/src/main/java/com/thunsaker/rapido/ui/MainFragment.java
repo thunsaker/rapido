@@ -1090,12 +1090,12 @@ public class MainFragment extends BaseRapidoFragment
 
         UpdateTwitter(update);
         UpdateFacebook(update);
-        UpdateGooglePlus(update);
         UpdateFoursquare(update);
+        UpdateGooglePlus(update);
 
-//        this.getActivity().finish();
         mComposeText.setText("");
         ClearPickedLocation();
+//        this.getActivity().finish(); // TODO: Consider addressing this with a background service
     }
 
     private void UpdateFacebook(final String updateText) {

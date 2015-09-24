@@ -177,4 +177,10 @@ public class BitlyAuthActivity extends BaseRapidoActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(null);
 	}
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mWebView = null;
+    }
 }

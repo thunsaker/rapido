@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId "com.thunsaker.rapido"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 20
         versionName "2.0.1"
