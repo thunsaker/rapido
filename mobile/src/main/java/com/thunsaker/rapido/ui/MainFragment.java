@@ -523,7 +523,7 @@ public class MainFragment extends BaseRapidoFragment
                 .subscribe(new Action1<TextViewTextChangeEvent>() {
                     @Override
                     public void call(TextViewTextChangeEvent onTextViewTextChangeEvent) {
-                        if(mFacebookLogin.getText().toString().contains("Log in") && mPreferences.facebookEnabled().getOr(false)) {
+                        if (mFacebookLogin.getText().toString().contains("Log in") && mPreferences.facebookEnabled().getOr(false)) {
                             FacebookSignOut();
                         }
                     }
@@ -1094,7 +1094,7 @@ public class MainFragment extends BaseRapidoFragment
         UpdateGooglePlus(update);
 
         mComposeText.setText("");
-        ClearPickedLocation();
+        HidePickedLocation();
 //        this.getActivity().finish(); // TODO: Consider addressing this with a background service
     }
 
@@ -1159,7 +1159,11 @@ public class MainFragment extends BaseRapidoFragment
                     ServiceNotifications.TWITTER_NOTIFICATION,
                     mNotificationTwitterBuilder.build());
 
-            mTwitterTasks.new PostStatusUpdate(updateText).execute();
+            if(CurrentPickedLocation != null) {
+                mTwitterTasks.new SearchTwitterPlaces(updateText, CurrentPickedLocation).execute();
+            } else {
+                mTwitterTasks.new PostStatusUpdate(updateText).execute();
+            }
         }
     }
 
