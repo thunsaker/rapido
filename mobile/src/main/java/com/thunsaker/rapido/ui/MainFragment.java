@@ -1173,7 +1173,11 @@ public class MainFragment extends BaseRapidoFragment
                     ServiceNotifications.TWITTER_NOTIFICATION,
                     mNotificationTwitterBuilder.build());
 
-            mTwitterTasks.new PostStatusUpdate(updateText).execute();
+            if(CurrentPickedLocation != null) {
+                mTwitterTasks.new SearchTwitterPlaces(updateText, CurrentPickedLocation).execute();
+            } else {
+                mTwitterTasks.new PostStatusUpdate(updateText).execute();
+            }
         }
     }
 
