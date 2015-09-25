@@ -4,7 +4,6 @@ import com.squareup.leakcanary.AndroidExcludedRefs;
 import com.squareup.leakcanary.DisplayLeakService;
 import com.squareup.leakcanary.ExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import com.thunsaker.android.common.dagger.DaggerApplication;
 
 import java.util.Collections;
