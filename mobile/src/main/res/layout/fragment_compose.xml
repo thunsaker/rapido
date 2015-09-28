@@ -125,13 +125,14 @@
                 android:layout_marginBottom="@dimen/material_padding"
                 android:layout_marginTop="@dimen/material_padding"
                 android:layout_below="@id/compose_edit_text"
+                android:padding="@dimen/material_padding_half"
                 android:src="@drawable/location_icon"
                 android:tint="@color/accent"
                 android:background="@null"
                 android:scaleType="fitCenter"
                 android:contentDescription="@string/location_add"
                 android:elevation="5dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 tools:ignore="UnusedAttribute" />
 
             <RelativeLayout
