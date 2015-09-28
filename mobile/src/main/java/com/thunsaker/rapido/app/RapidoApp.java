@@ -1,8 +1,5 @@
 package com.thunsaker.rapido.app;
 
-import com.squareup.leakcanary.AndroidExcludedRefs;
-import com.squareup.leakcanary.DisplayLeakService;
-import com.squareup.leakcanary.ExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.thunsaker.android.common.dagger.DaggerApplication;
 
@@ -30,10 +27,11 @@ public class RapidoApp extends DaggerApplication {
     }
 
     protected void installLeakCanary() {
-        ExcludedRefs excludedRefs = AndroidExcludedRefs.createAppDefaults()
-                // Google Maps API : https://github.com/square/leakcanary/issues/224
-                .staticField("com.google.android.chimera.container.a", "a")
-                .build();
-        LeakCanary.install(this, DisplayLeakService.class, excludedRefs);
+//        ExcludedRefs excludedRefs = AndroidExcludedRefs.createAppDefaults()
+//                // Google Maps API : https://github.com/square/leakcanary/issues/224
+//                .staticField("com.google.android.chimera.container.a", "a")
+//                .build();
+//        LeakCanary.install(this, DisplayLeakService.class, excludedRefs);
+        LeakCanary.install(this);
     }
 }

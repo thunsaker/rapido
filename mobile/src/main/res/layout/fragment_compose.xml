@@ -125,7 +125,7 @@
                 android:layout_marginBottom="@dimen/material_padding"
                 android:layout_marginTop="@dimen/material_padding"
                 android:layout_below="@id/compose_edit_text"
-                android:src="@drawable/ic_location_on"
+                android:src="@drawable/location_icon"
                 android:tint="@color/accent"
                 android:background="@null"
                 android:scaleType="fitCenter"
