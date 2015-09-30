@@ -132,7 +132,7 @@
                 android:scaleType="fitCenter"
                 android:contentDescription="@string/location_add"
                 android:elevation="5dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 tools:ignore="UnusedAttribute" />
 
             <RelativeLayout

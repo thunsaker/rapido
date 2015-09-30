@@ -184,7 +184,7 @@ public class MainFragment extends BaseRapidoFragment
     private UpdateEvent mUpdateEventData;
     private int PLACE_SEARCH_RADIUS = 500;
     private int PLACE_SEARCH_COUNT = 2;
-    private boolean mLocationEnabled = false;
+//    private boolean mLocationEnabled = false;
 
     private enum PendingAction {
         NONE,
@@ -547,7 +547,7 @@ public class MainFragment extends BaseRapidoFragment
     }
 
     private void SetupFoursquareChip() {
-        if(mLocationEnabled)
+//        if(mLocationEnabled)
             if(MainActivity.mFoursquareEnabled)
                 if (CurrentPickedLocation != null)
                     mChipFoursquare.setChecked(true);
@@ -555,8 +555,8 @@ public class MainFragment extends BaseRapidoFragment
                     mChipFoursquare.setChecked(false);
             else
                 mChipFoursquare.setChecked(false);
-        else
-            mChipFoursquare.setVisibility(View.GONE);
+//        else
+//            mChipFoursquare.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.compose_to_chip_facebook)
@@ -1124,7 +1124,8 @@ public class MainFragment extends BaseRapidoFragment
                 if(mLinksInText != null && mLinksInText.size() > 0)
                     params.put("link", mLinksInText.get(0));
 
-                if(mLocationEnabled && CurrentPickedLocation != null) {
+//                if(mLocationEnabled && CurrentPickedLocation != null) {
+                if(CurrentPickedLocation != null) {
                     String placeId = "";
                     Location venueLocation = new Location(MainActivity.currentLocation);
                     venueLocation.setLatitude(CurrentPickedLocation.getLatitude());
@@ -1177,7 +1178,8 @@ public class MainFragment extends BaseRapidoFragment
                     ServiceNotifications.TWITTER_NOTIFICATION,
                     mNotificationTwitterBuilder.build());
 
-            if(mLocationEnabled && CurrentPickedLocation != null) {
+//            if(mLocationEnabled && CurrentPickedLocation != null) {
+            if(CurrentPickedLocation != null) {
                 mTwitterTasks.new SearchTwitterPlaces(updateText, CurrentPickedLocation).execute();
             } else {
                 mTwitterTasks.new PostStatusUpdate(updateText).execute();
@@ -1494,24 +1496,24 @@ public class MainFragment extends BaseRapidoFragment
 //
 //    }
 
-    @OnLongClick(R.id.compose_to_text)
-    public boolean ToLongClick() {
-        EnableLocation();
-        return true;
-    }
-
-    private void EnableLocation() {
-        if(mLocationEnabled) {
-            ClearPickedLocation();
-            mButtonLocationAdd.setVisibility(View.GONE);
-            mChipFoursquare.setVisibility(View.GONE);
-            mLocationEnabled = false;
-        } else {
-            mButtonLocationAdd.setVisibility(View.VISIBLE);
-            mChipFoursquare.setVisibility(View.VISIBLE);
-            mLocationEnabled = true;
-        }
-    }
+//    @OnLongClick(R.id.compose_to_text)
+//    public boolean ToLongClick() {
+//        EnableLocation();
+//        return true;
+//    }
+//
+//    private void EnableLocation() {
+//        if(mLocationEnabled) {
+//            ClearPickedLocation();
+//            mButtonLocationAdd.setVisibility(View.GONE);
+//            mChipFoursquare.setVisibility(View.GONE);
+//            mLocationEnabled = false;
+//        } else {
+//            mButtonLocationAdd.setVisibility(View.VISIBLE);
+//            mChipFoursquare.setVisibility(View.VISIBLE);
+//            mLocationEnabled = true;
+//        }
+//    }
 
     @OnClick(R.id.compose_remove_location)
     public void ClickRemoveLocation() {
