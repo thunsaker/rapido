@@ -15,7 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--include ../proguard-com.twitter.sdk.android.twitter.txt
+-include ../proguard-com.twitter.sdk.android.twitter.pro
 
 #Butterknife
 -dontwarn butterknife.internal.**
@@ -40,3 +40,21 @@
 # LeakCanary
 -keep class org.eclipse.mat.** { *; }
 -keep class com.squareup.leakcanary.** { *; }
+
+#Play Services
+-keep public class com.google.android.gms.* { public *; }
+-dontwarn com.google.android.gms.**
+
+#Twitter4j
+-dontwarn twitter4j.**
+-keep  class twitter4j.conf.PropertyConfigurationFactory
+-keep class twitter4j.** { *; }
+
+#Retrofit
+-dontwarn retrofit.**
+-keep class retrofit.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+
+#Okio
+-dontwarn okio.**
