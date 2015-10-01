@@ -21,7 +21,6 @@ import com.thunsaker.rapido.ui.GooglePlusAuthActivity;
 import com.thunsaker.rapido.ui.LocationPicker;
 import com.thunsaker.rapido.ui.MainActivity;
 import com.thunsaker.rapido.ui.MainFragment;
-import com.thunsaker.rapido.ui.SettingsActivity;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 
@@ -47,7 +46,6 @@ import twitter4j.conf.ConfigurationBuilder;
                 GooglePlusAuthActivity.class,
                 TwitterTasks.class,
                 NotificationFactory.class,
-                SettingsActivity.class,
                 BitlyAuthActivity.class,
                 LocationPicker.class
         }
