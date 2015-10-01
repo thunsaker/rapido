@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Rapido</string>
-    <string name="app_name_with_accent">Rápido</string>
-    <string name="app_version">v.2.0</string>
+    <string name="app_name_with_accent" translatable="false">Rápido</string>
+    <string name="app_version" translatable="false">v.2.0</string>
     <string name="google_maps_key">[GOOGLE_MAPS_API_KEY_HERE]</string>
     <string name="facebook_app_id">[FACEBOOK_APP_ID_HERE]</string>
 
-    <string name="accounts_foursquare">Foursquare</string>
-    <string name="accounts_google_plus">Google Plus</string>
-    <string name="accounts_facebook">Facebook</string>
-    <string name="accounts_twitter">Twitter</string>
-    <string name="accounts_bitly">bit.ly</string>
+    <string name="accounts_foursquare" translatable="false">Foursquare</string>
+    <string name="accounts_google_plus" translatable="false">Google Plus</string>
+    <string name="accounts_facebook" translatable="false">Facebook</string>
+    <string name="accounts_twitter" translatable="false">Twitter</string>
+    <string name="accounts_bitly" translatable="false">bit.ly</string>
 
-    <string name="placeholder_nav_drawer_item_title"></string>
+    <string name="lorem_ipsum" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat arcu vel felis ultrices, a sagittis lectus vestibulum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</string>
 
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat arcu vel felis ultrices, a sagittis lectus vestibulum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</string>
-
-    <string name="prefs_key_about_version">rapido_key_about</string>
-    <string name="prefs_key_accounts_facebook">rapido_key_accounts_facebook</string>
-    <string name="prefs_key_accounts_twitter">rapido_key_accounts_twitter</string>
-    <string name="prefs_key_accounts_foursquare">rapido_key_accounts_foursquare</string>
-    <string name="prefs_key_accounts_plus">rapido_key_accounts_plus</string>
-    <string name="prefs_key_accounts_bitly">rapido_key_accounts_bitly</string>
-    <string name="prefs_key_accounts_clear">rapido_key_accounts_clear</string>
+    <string name="prefs_key_about_version" translatable="false">rapido_key_about</string>
+    <string name="prefs_key_accounts_facebook" translatable="false">rapido_key_accounts_facebook</string>
+    <string name="prefs_key_accounts_twitter" translatable="false">rapido_key_accounts_twitter</string>
+    <string name="prefs_key_accounts_foursquare" translatable="false">rapido_key_accounts_foursquare</string>
+    <string name="prefs_key_accounts_plus" translatable="false">rapido_key_accounts_plus</string>
+    <string name="prefs_key_accounts_bitly" translatable="false">rapido_key_accounts_bitly</string>
+    <string name="prefs_key_accounts_clear" translatable="false">rapido_key_accounts_clear</string>
 </resources>
