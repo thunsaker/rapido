@@ -16,7 +16,6 @@
     <string name="action_send">Mandar</string>
     <string name="action_settings">Configuración</string>
     <string name="action_about">Acerca</string>
-    <string name="accounts_select">Cuentas</string>
     <string name="prefs_clear_accounts_title">Borrar Información de las cuentas.</string>
     <string name="account_finishing_up">Terminando…</string>
     <string name="account_facebook_authorizing">Conectando al Facebook de nuevo</string>
@@ -54,4 +53,5 @@
     <string name="error_template">Error: %s</string>
     <string name="post_retry">Intenta otra vez</string>
     <string name="accounts_add">Añadir una Cuenta</string>
+    <string name="action_back">atrás</string>
 </resources>
