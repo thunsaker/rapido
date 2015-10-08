@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:background="?attr/colorPrimary">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/compose_map_wrapper"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_above="@+id/compose_color_block">-->
+        <!--<fragment-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/compose_map"-->
+            <!--tools:context="com.thunsaker.rapido2.ui.LocationPicker"-->
+            <!--android:name="com.google.android.gms.maps.SupportMapFragment" />-->
+    <!--</FrameLayout>-->
+
+    <LinearLayout
+        android:id="@+id/compose_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+        <LinearLayout
+            android:id="@+id/compose_to_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/compose_to_text"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:paddingLeft="@dimen/material_keyline_1"
+                android:paddingRight="@dimen/material_keyline_1"
+                android:textSize="@dimen/material_type_small"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:text="@string/compose_to" />
+            <LinearLayout
+                android:id="@+id/compose_to_chips_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center"
+                android:orientation="horizontal">
+                <include
+                    android:id="@+id/compose_to_chip_twitter"
+                    layout="@layout/chip_twitter" />
+                <include
+                    android:id="@+id/compose_to_chip_facebook"
+                    layout="@layout/chip_facebook" />
+                <include
+                    android:id="@+id/compose_to_chip_foursquare"
+                    layout="@layout/chip_foursquare" />
+                <include
+                    android:id="@+id/compose_to_chip_plus"
+                    layout="@layout/chip_plus" />
+                <include
+                    android:id="@+id/compose_to_chip_bitly"
+                    layout="@layout/chip_bitly" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/seamCompose"
+            android:layout_height="1dp"
+            android:layout_width="fill_parent"
+            android:background="@color/gray_light_super" />
+
+        <RelativeLayout
+            android:id="@+id/compose_edit_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp">
+
+            <EditText
+                android:id="@+id/compose_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="3"
+                android:maxLines="6"
+                android:minHeight="@dimen/material_section_height_xlarge"
+                android:maxHeight="400dp"
+                android:gravity="top|start"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/material_type_small"
+                android:hint="@string/compose_placeholder"
+                android:paddingTop="@dimen/material_padding"
+                android:paddingBottom="@dimen/material_padding_double"
+                android:layout_marginTop="@dimen/material_padding"
+                android:layout_marginLeft="@dimen/material_keyline_1"
+                android:layout_marginStart="@dimen/material_keyline_1"
+                android:layout_marginRight="@dimen/material_keyline_1"
+                android:layout_marginEnd="@dimen/material_keyline_1"
+                android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
+                android:imeOptions="flagNoExtractUi" />
+
+            <TextView
+                android:id="@+id/compose_text_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="60sp"
+                android:textColor="@color/character_count_default"
+                android:layout_marginRight="@dimen/material_keyline_1"
+                android:layout_marginEnd="@dimen/material_keyline_1"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                tools:ignore="RelativeOverlap" />
+
+            <ImageButton
+                android:id="@+id/compose_add_location"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/material_keyline_1"
+                android:layout_marginStart="@dimen/material_keyline_1"
+                android:layout_marginBottom="@dimen/material_padding"
+                android:layout_marginTop="@dimen/material_padding"
+                android:layout_below="@id/compose_edit_text"
+                android:padding="@dimen/material_padding_half"
+                android:src="@drawable/location_icon"
+                android:tint="@color/accent"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/location_add"
+                android:elevation="5dp"
+                android:visibility="visible"
+                tools:ignore="UnusedAttribute" />
+
+            <RelativeLayout
+                android:id="@+id/compose_location_wrapper"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/compose_send_button"
+                android:layout_toStartOf="@+id/compose_send_button"
+                android:layout_marginLeft="@dimen/material_keyline_1"
+                android:layout_marginStart="@dimen/material_keyline_1"
+                android:layout_marginBottom="@dimen/material_padding"
+                android:layout_marginTop="@dimen/material_padding"
+                android:layout_below="@id/compose_edit_text"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:id="@+id/compose_remove_location"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_action_close_white"
+                    android:tint="@color/accent"
+                    android:background="@drawable/ripple_red"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/location_add"
+                    android:elevation="5dp"
+                    tools:ignore="UnusedAttribute" />
+
+                <TextView
+                    android:id="@+id/compose_location_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_text"
+                    android:maxLines="2"
+                    android:paddingLeft="@dimen/material_padding"
+                    android:layout_toRightOf="@+id/compose_remove_location"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/compose_send_button"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:minWidth="96dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/material_keyline_1_offset_plus"
+                android:layout_marginEnd="@dimen/material_keyline_1_offset_plus"
+                android:layout_marginLeft="@dimen/material_padding"
+                android:layout_marginStart="@dimen/material_padding"
+                android:layout_marginBottom="@dimen/material_padding_double"
+                android:layout_marginTop="@dimen/material_padding"
+                android:layout_below="@id/compose_edit_text"
+                android:elevation="5dp"
+                android:textColor="@color/white"
+                android:text="@string/action_send"
+                android:textSize="14sp"
+                android:textAllCaps="true"
+                android:background="@drawable/background_button_rectangle"
+                tools:ignore="UnusedAttribute" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/compose_color_block"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/compose_wrapper"
+        android:background="?attr/colorPrimary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/material_keyline_1"
+        android:visibility="gone">
+
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/twitter_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+</RelativeLayout>
+</ScrollView>

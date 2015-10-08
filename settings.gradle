@@ -1,2 +1,5 @@
-include ':foursquareoauthlibrary'
-include ':rapido'
+include ':mobile' ,
+        ':foursquare-android-oauth:foursquare-oauth-library',
+        ':WaveCompat:wavecompat-library',
+        ':MaterialShowcaseView:library',
+        ':AboutLibraries:library'

@@ -1,0 +1,115 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.19.2'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.thunsaker.rapido"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 20
+        versionName "2.0"
+        resConfigs "en", "es"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "TWITTER_KEY", getEnv("RAPIDO_TWIT_KEY"));
+            buildConfigField("String", "TWITTER_SECRET", getEnv("RAPIDO_TWIT_SECRET"));
+            buildConfigField("String", "BITLY_ID", getEnv("RAPIDO_BIT_ID"));
+            buildConfigField("String", "BITLY_SECRET", getEnv("RAPIDO_BIT_SECRET"));
+            buildConfigField("String", "FOURSQUARE_ID", getEnv("RAPIDO_FOUR_ID"));
+            buildConfigField("String", "FOURSQUARE_SECRET", getEnv("RAPIDO_FOUR_SECRET"));
+            buildConfigField("String", "FACEBOOK_ID", getEnv("RAPIDO_FACE_AUTH_ID"));
+            buildConfigField("String", "MAPS_KEY", getEnv("RAPIDO_MAPS_KEY"));
+
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            buildConfigField("String", "TWITTER_KEY", getEnv("RAPIDO_TWIT_KEY"));
+            buildConfigField("String", "TWITTER_SECRET", getEnv("RAPIDO_TWIT_SECRET"));
+            buildConfigField("String", "BITLY_ID", getEnv("RAPIDO_BIT_ID"));
+            buildConfigField("String", "BITLY_SECRET", getEnv("RAPIDO_BIT_SECRET"));
+            buildConfigField("String", "FOURSQUARE_ID", getEnv("RAPIDO_FOUR_ID"));
+            buildConfigField("String", "FOURSQUARE_SECRET", getEnv("RAPIDO_FOUR_SECRET"));
+            buildConfigField("String", "FACEBOOK_ID", getEnv("RAPIDO_FACE_AUTH_ID"));
+            buildConfigField("String", "MAPS_KEY", getEnv("RAPIDO_MAPS_KEY"));
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+def getEnv(key, defVal = '') {
+    "\"${System.env.containsKey(key) ? System.env.get(key) : defVal}\""
+}
+
+dependencies {
+    compile project(':foursquare-android-oauth:foursquare-oauth-library')
+
+    compile 'com.github.mrengineer13:snackbar:1.2.0'
+    compile project(':WaveCompat:wavecompat-library')
+    compile project(':MaterialShowcaseView:library')
+    compile project(':AboutLibraries:library')
+
+    provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+
+    compile('com.twitter.sdk.android:twitter:1.3.0@aar') {
+        exclude group: 'com.squareup.retrofit'
+        transitive = true
+    }
+
+    compile 'com.android.support:design:23.0.1'
+    compile 'com.android.support:support-v4:23.0.1'
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.google.android.gms:play-services-identity:8.1.0'
+    compile 'com.google.android.gms:play-services-plus:8.1.0'
+    compile 'com.google.android.gms:play-services-location:8.1.0'
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'de.greenrobot:eventbus:2.4.0'
+
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.4.0'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.2.0'
+
+    compile 'com.melnykov:floatingactionbutton:1.1.0'
+    compile 'com.github.talenguyen:prettysharedpreferences:1.0.2'
+    compile 'com.twitter:twitter-text:1.9.0'
+    compile 'org.twitter4j:twitter4j-core:4.0.2'
+    compile 'com.facebook.android:facebook-android-sdk:4.5.0'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.1@aar') {
+        transitive = true;
+    }
+
+    testCompile 'org.robolectric:robolectric:3.0'
+    testCompile 'org.robolectric:shadows-support-v4:3.0'
+}

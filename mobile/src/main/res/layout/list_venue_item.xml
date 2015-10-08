@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutVenueItemWrapper"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="72dp"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/material_padding_double"
+    android:paddingRight="@dimen/material_padding_double"
+    android:paddingLeft="@dimen/material_padding_double"
+    android:paddingBottom="@dimen/material_padding_double"
+    android:baselineAligned="false"
+    android:background="@drawable/list_view_ripple_accent">
+
+    <FrameLayout
+        android:id="@+id/frameLayoutVenueCategoryWrapper"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="@dimen/material_padding_double"
+        android:layout_marginEnd="@dimen/material_padding_double"
+        android:layout_marginTop="@dimen/material_padding_half">
+        <ImageView
+            android:id="@+id/viewVenueCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/circle_gray"
+            android:contentDescription="@string/image_description_category_icon" />
+        <ImageView
+            android:id="@+id/imageViewVenueCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:padding="@dimen/material_padding"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:background="@null"
+            android:contentDescription="@string/image_description_category_icon"
+            android:src="@drawable/foursquare_generic_category_icon" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutVenueItemTextWrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/frameLayoutVenueCategoryWrapper"
+        android:layout_toEndOf="@id/frameLayoutVenueCategoryWrapper"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/textViewVenueName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/body_text"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="top"
+            android:layout_gravity="center_vertical"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="@dimen/material_type_med"
+            android:textIsSelectable="false"
+            tools:ignore="UnusedAttribute" />
+        <LinearLayout
+            android:id="@+id/linearLayoutVenueItemAddressTextWrapper"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/material_padding_half"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/textViewVenueDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/material_padding_half"
+                android:layout_marginEnd="@dimen/material_padding_half"
+                android:textColor="@color/body_text"
+                android:textSize="@dimen/material_type_micro"
+                android:textStyle="bold"
+                android:textIsSelectable="false"
+                tools:ignore="UnusedAttribute" />
+            <TextView
+                android:id="@+id/textViewVenueAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/body_text"
+                android:textSize="@dimen/material_type_micro"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textIsSelectable="false"
+                tools:ignore="UnusedAttribute" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

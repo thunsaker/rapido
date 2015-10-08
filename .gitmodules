@@ -1,0 +1,12 @@
+[submodule "foursquare-android-oauth"]
+	path = foursquare-android-oauth
+	url = https://github.com/thunsaker/foursquare-android-oauth.git
+[submodule "wavecompat"]
+	path = WaveCompat
+	url = https://github.com/thunsaker/wavecompat.git
+[submodule "MaterialShowcaseView"]
+	path = MaterialShowcaseView
+	url = https://github.com/thunsaker/MaterialShowcaseView
+[submodule "AboutLibraries"]
+	path = AboutLibraries
+	url = https://github.com/thunsaker/AboutLibraries

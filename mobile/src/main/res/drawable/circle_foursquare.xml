@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <size
+        android:height="@dimen/material_icon_size_small"
+        android:width="@dimen/material_icon_size_small" />
+    <solid android:color="@color/foursquare" />
+</shape>

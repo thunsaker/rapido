@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/twitter_light">
+    <item>
+        <shape
+            android:shape="oval">
+            <size
+                android:height="@dimen/material_icon_size_small"
+                android:width="@dimen/material_icon_size_small" />
+            <solid android:color="@color/twitter" />
+        </shape>
+    </item>
+</ripple>
