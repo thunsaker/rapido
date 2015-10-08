@@ -1,5 +1,5 @@
 ### Rápido
-_ Status updates...fast. _  
+_Status updates...fast._
 
 ![Rapido Screenshot](extras/rapido-hero-shadow.png)
 
@@ -11,4 +11,4 @@ v.2.0
 - Added limited location support to Twitter (regional not specific)
 - Added Facebook location support (if a match is found on FB)
 
-[![Get it on Google Play](https://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.thunsaker.rapido "Get it on Google Play")
+[![Get it on Google Play](https://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://bit.ly/RapidoApp "Get it on Google Play")
