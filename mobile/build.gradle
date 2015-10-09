@@ -24,8 +24,8 @@ android {
         applicationId "com.thunsaker.rapido"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 20
-        versionName "2.0"
+        versionCode 2010
+        versionName "2.0.1"
         resConfigs "en", "es"
     }
 

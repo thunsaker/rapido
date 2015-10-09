@@ -228,14 +228,14 @@ public class LocationPicker extends BaseRapidoActivity
 
         if(id == R.id.action_close) {
             setResult(Activity.RESULT_CANCELED);
-            foursquareServiceSubscription.unsubscribe();
             ShutItDown();
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void ShutItDown() {
-        foursquareServiceSubscription.unsubscribe();
+        if(foursquareServiceSubscription != null)
+            foursquareServiceSubscription.unsubscribe();
         finish();
     }
 
