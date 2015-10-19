@@ -12,6 +12,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
@@ -135,6 +136,7 @@ public class MainFragment extends BaseRapidoFragment
     SwarmService mSwarmService;
 
     @Bind(R.id.compose_send_button) Button mButtonSend;
+    @Bind(R.id.compose_send_fab) FloatingActionButton mFabSend;
 
     @Bind(R.id.compose_add_location) ImageButton mButtonLocationAdd;
     @Bind(R.id.compose_location_wrapper) RelativeLayout mWrapperLocation;
@@ -1012,6 +1014,11 @@ public class MainFragment extends BaseRapidoFragment
     @Override
     public void onDestroy() {
             super.onDestroy();
+    }
+
+    @OnClick(R.id.compose_send_fab)
+    public void ComposeSendFabClick() {
+        mButtonSend.callOnClick();
     }
 
     @OnClick(R.id.compose_send_button)

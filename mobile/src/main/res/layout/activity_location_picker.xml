@@ -6,7 +6,7 @@
     <FrameLayout
         android:id="@+id/map_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="@dimen/location_picker_map_height"
         android:layout_alignParentTop="true">
         <fragment
             android:layout_width="match_parent"

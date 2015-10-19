@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="fill_parent"
-    android:layout_width="match_parent"
-    android:background="?attr/colorPrimary">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_light_super">
 
+    <View
+        android:id="@+id/header_color_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/compose_wrapper_card"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="60dp"
+        android:minHeight="200dp"
+        android:background="?attr/colorPrimary" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/compose_wrapper_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/card_padding_top"
+        android:layout_marginLeft="@dimen/card_padding"
+        android:layout_marginRight="@dimen/card_padding">
         <LinearLayout
             android:id="@+id/compose_wrapper"
             android:layout_width="match_parent"
@@ -18,17 +32,9 @@
                 android:id="@+id/compose_to_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_margin="@dimen/material_padding"
                 android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/compose_to_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="?attr/actionBarSize"
-                    android:paddingLeft="@dimen/material_keyline_1"
-                    android:paddingRight="@dimen/material_keyline_1"
-                    android:textSize="@dimen/material_type_small"
-                    android:gravity="center_vertical"
-                    android:clickable="true"
-                    android:text="@string/compose_to" />
                 <LinearLayout
                     android:id="@+id/compose_to_chips_wrapper"
                     android:layout_width="wrap_content"
@@ -37,7 +43,7 @@
                     android:orientation="horizontal">
                     <include
                         android:id="@+id/compose_to_chip_twitter"
-                        layout="@layout/chip_twitter" />
+                        layout="@layout/chip_twitter"/>
                     <include
                         android:id="@+id/compose_to_chip_facebook"
                         layout="@layout/chip_facebook" />
@@ -69,7 +75,7 @@
                     android:id="@+id/compose_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minLines="3"
+                    android:minLines="6"
                     android:maxLines="6"
                     android:minHeight="@dimen/material_section_height_xlarge"
                     android:maxHeight="400dp"
@@ -125,12 +131,13 @@
                     android:id="@+id/compose_location_wrapper"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="@dimen/location_height"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_toLeftOf="@+id/compose_send_button"
-                    android:layout_toStartOf="@+id/compose_send_button"
                     android:layout_marginLeft="@dimen/material_keyline_1"
                     android:layout_marginStart="@dimen/material_keyline_1"
+                    android:layout_marginRight="@dimen/material_keyline_1"
+                    android:layout_marginEnd="@dimen/material_keyline_1"
                     android:layout_marginBottom="@dimen/material_padding"
                     android:layout_marginTop="@dimen/material_padding"
                     android:layout_below="@id/compose_edit_text"
@@ -161,60 +168,88 @@
                         tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                 </RelativeLayout>
-
-                <Button
-                    android:id="@+id/compose_send_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:minWidth="96dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="@dimen/material_keyline_1_offset_plus"
-                    android:layout_marginEnd="@dimen/material_keyline_1_offset_plus"
-                    android:layout_marginLeft="@dimen/material_padding"
-                    android:layout_marginStart="@dimen/material_padding"
-                    android:layout_marginBottom="@dimen/material_padding_double"
-                    android:layout_marginTop="@dimen/material_padding"
-                    android:layout_below="@id/compose_edit_text"
-                    android:elevation="5dp"
-                    android:textColor="@color/white"
-                    android:text="@string/action_send"
-                    android:textSize="14sp"
-                    android:textAllCaps="true"
-                    android:background="@drawable/background_button_rectangle"
-                    tools:ignore="UnusedAttribute" />
             </RelativeLayout>
         </LinearLayout>
+    </android.support.v7.widget.CardView>
 
-        <RelativeLayout
-            android:id="@+id/compose_color_block"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/compose_send_fab"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_action_send_white"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/header_color_block"
+        android:layout_marginRight="@dimen/fab_side_margin"
+        android:layout_marginEnd="@dimen/fab_side_margin"
+        android:layout_marginTop="-90dp"/>
+
+    <LinearLayout
+        android:id="@+id/compose_color_block"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/compose_wrapper_card"
+        android:background="@color/gray_light_super">
+        <FrameLayout
+            android:id="@+id/compose_map_wrapper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/compose_wrapper"
-            android:background="?attr/colorPrimary" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/material_keyline_1"
             android:visibility="gone">
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/map"
+                tools:context="com.thunsaker.rapido.ui.LocationPicker"
+                android:name="com.google.android.gms.maps.SupportMapFragment" />
+        </FrameLayout>
 
-            <com.twitter.sdk.android.core.identity.TwitterLoginButton
-                android:id="@+id/twitter_login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+        <Button
+            android:id="@+id/compose_send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:minWidth="96dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/material_keyline_1_offset_plus"
+            android:layout_marginEnd="@dimen/material_keyline_1_offset_plus"
+            android:layout_marginLeft="@dimen/material_padding"
+            android:layout_marginStart="@dimen/material_padding"
+            android:layout_marginBottom="@dimen/material_padding_double"
+            android:layout_marginTop="@dimen/material_padding"
+            android:layout_below="@id/compose_edit_text"
+            android:elevation="5dp"
+            android:textColor="@color/white"
+            android:text="@string/action_send"
+            android:textSize="14sp"
+            android:textAllCaps="true"
+            android:background="@drawable/background_button_rectangle"
+            android:visibility="gone"
+            tools:ignore="UnusedAttribute" />
+    </LinearLayout>
 
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/facebook_login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_gravity="center" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/material_keyline_1"
+        android:visibility="gone">
 
-        </LinearLayout>
-    </RelativeLayout>
-</ScrollView>
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/twitter_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+</RelativeLayout>
