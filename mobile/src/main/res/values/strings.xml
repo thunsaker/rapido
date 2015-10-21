@@ -70,4 +70,9 @@
     <string name="action_sign_out">Sign Out</string>
     <string name="accounts_add">Add Account</string>
     <string name="action_back">back</string>
+    <string name="perm_get_accounts_denied">GET_ACCOUNTS permission denied.</string>
+    <string name="perm_get_accounts_rationale">Google+ requires the "Contacts" permission to list connected google accounts.</string>
+    <string name="perm_get_accounts_explainer">The following permission will ask to \"access your contacts\" this is necessary to list Google+ accounts. \n\nNOTE: THIS APP WILL NOT BE SCANNING OR STORING YOUR CONTACTS.</string>
+    <string name="perm_change">Change</string>
+    <string name="perm_header_image">Image of a lock</string>
 </resources>
