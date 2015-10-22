@@ -54,4 +54,9 @@
     <string name="post_retry">Intenta otra vez</string>
     <string name="accounts_add">Añadir una Cuenta</string>
     <string name="action_back">atrás</string>
+    <string name="perm_get_accounts_denied">El permiso GET_ACCOUNTS ha sido denegado.</string>
+    <string name="perm_get_accounts_rationale">Google+ requiere el permiso "Contactos" para enumerar la lista de cuentas.</string>
+    <string name="perm_get_accounts_explainer">El siguiente permiso le preguntará a \"acceder a sus contactos\" esto es necesario para enumerar las cuentas de Google+. \n\nAVISO: ESTA APLICACIÓN NO SERÁ EXPLORANDO O GUARDANDO SUS CONTACTOS.</string>
+    <string name="perm_change">Cambiar</string>
+    <string name="perm_header_image">Imagen de un candado</string>
 </resources>
