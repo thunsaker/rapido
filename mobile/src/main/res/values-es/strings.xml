@@ -39,7 +39,7 @@
     <string name="error_generic">Error: Un error ocurrió, intenta otra vez.</string>
     <string name="error_invalid_url">Asegúrese que ha introducido un URL válido.</string>
     <string name="error_location_unknown">Error: Ubicación actual esta desconocida</string>
-    <string name="error_location_picking">Error eligiendo un lugar</string>
+    <string name="error_location_picking">Ningún lugar fue elegido</string>
     <string name="error_posting_update">Error: Mandando la actualización</string>
     <string name="error_parsing_response">Error al analizar la respuesta</string>
     <string name="error_server">Error de servidor</string>

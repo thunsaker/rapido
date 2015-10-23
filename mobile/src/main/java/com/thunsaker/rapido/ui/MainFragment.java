@@ -818,11 +818,12 @@ public class MainFragment extends BaseRapidoFragment
                 new SnackBar.Builder(this.getActivity()).withMessage(message);
         if(service != null) {
             int textColor = ServiceUtils.GetServiceTextColor(service);
-            int backgroundColor = ServiceUtils.GetServiceColor(service);
-            SnackBar.Style actionStyle = null;
+            builder.withTextColorId(textColor);
 
-            builder.withTextColorId(textColor)
-                    .withBackgroundColorId(backgroundColor);
+            if(service != UpdateService.NONE) {
+                int backgroundColor = ServiceUtils.GetServiceColor(service);
+                builder.withBackgroundColorId(backgroundColor);
+            }
         }
 
         if(actionId > 0 && clickListener != null) {
@@ -1640,9 +1641,7 @@ public class MainFragment extends BaseRapidoFragment
             if (grantResults.length == 1 &&
                     grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Log.i(LOG_TAG, "Permission Granted, launch LocationPicker");
-                startActivityForResult(
-                        new Intent(mContext, LocationPicker.class),
-                        REQUEST_CODE_LOCATION_PICKER);
+                mButtonLocationAdd.performClick();
             } else {
                 Log.i(LOG_TAG, "Else permission denied...");
                 PopSnackBar(
