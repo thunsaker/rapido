@@ -39,7 +39,7 @@
     <string name="error_generic">Error: Un error ocurrió, intenta otra vez.</string>
     <string name="error_invalid_url">Asegúrese que ha introducido un URL válido.</string>
     <string name="error_location_unknown">Error: Ubicación actual esta desconocida</string>
-    <string name="error_location_picking">Error eligiendo un lugar</string>
+    <string name="error_location_picking">Ningún lugar fue elegido</string>
     <string name="error_posting_update">Error: Mandando la actualización</string>
     <string name="error_parsing_response">Error al analizar la respuesta</string>
     <string name="error_server">Error de servidor</string>
@@ -54,4 +54,12 @@
     <string name="post_retry">Intenta otra vez</string>
     <string name="accounts_add">Añadir una Cuenta</string>
     <string name="action_back">atrás</string>
+    <string name="perm_get_accounts_rationale">Google+ requiere el permiso "Contactos" para enumerar la lista de cuentas.</string>
+    <string name="perm_get_accounts_explainer">El siguiente permiso le preguntará a \"acceder a sus contactos\" esto es necesario para enumerar las cuentas de Google. \n\nAVISO: ESTA APLICACIÓN NO SERÁ EXPLORANDO O GUARDANDO SUS CONTACTOS.</string>
+    <string name="perm_denied">El permiso %s ha sido denegado</string>
+    <string name="perm_enable">Activar</string>
+    <string name="perm_header_image_lock">Candado</string>
+    <string name="perm_header_image_location">Marcador</string>
+    <string name="perm_location_explainer">El permiso "ubicación" debe estar habilitado para usar esta función.</string>
+    <string name="perm_location_rationale">El permiso de ubicación debe estar habilitado para agregar una ubicación.</string>
 </resources>
