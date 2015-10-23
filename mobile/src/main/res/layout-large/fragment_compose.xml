@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-60dp"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/compose_wrapper_card"
+        android:layout_below="@+id/compose_wrapper_card"
         android:orientation="horizontal"
         android:background="@color/gray_light_super">
         <FrameLayout

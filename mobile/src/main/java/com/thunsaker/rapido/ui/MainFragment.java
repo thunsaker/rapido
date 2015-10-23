@@ -1095,7 +1095,7 @@ public class MainFragment extends BaseRapidoFragment
 
     @OnClick(R.id.compose_send_fab)
     public void ComposeSendFabClick() {
-        mButtonSend.callOnClick();
+        mButtonSend.performClick();
     }
 
     @OnClick(R.id.compose_send_button)
