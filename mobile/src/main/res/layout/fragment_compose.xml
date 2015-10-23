@@ -216,5 +216,11 @@
                 android:layout_gravity="center" />
 
         </LinearLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/compose_send_fab"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:src="@drawable/ic_action_send_white" />
     </RelativeLayout>
 </ScrollView>
