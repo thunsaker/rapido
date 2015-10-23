@@ -1,18 +1,25 @@
 package com.thunsaker.rapido.ui;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
@@ -166,6 +173,9 @@ public class MainFragment extends BaseRapidoFragment
     public static final int REQUEST_CODE_LOCATION_PICKER = 4002;
     public static PickedLocation CurrentPickedLocation;
 
+    private static int REQUEST_CODE_PERMISSION_GET_ACCOUNT = 1;
+    private static int REQUEST_CODE_PERMISSION_ACCESS_FINE_LOCATION = 2;
+
     public final int TWITTER_SHORT_URL_LENGTH = 23;
     public final int BITLY_SHORT_URL_LENGTH = 20;
 
@@ -186,6 +196,8 @@ public class MainFragment extends BaseRapidoFragment
     private UpdateEvent mUpdateEventData;
     private int PLACE_SEARCH_RADIUS = 500;
     private int PLACE_SEARCH_COUNT = 2;
+    private String DIALOG_PERM_ACCOUNT_EXPLAINER = "PERM_ACCOUNT_EXPLAINER";
+    private String DIALOG_PERM_LOCATION_EXPLAINER = "PERM_LOCATION_EXPLAINER";
 //    private boolean mLocationEnabled = false;
 
     private enum PendingAction {
@@ -653,13 +665,12 @@ public class MainFragment extends BaseRapidoFragment
 //                    this.getActivity().startActivity(foursquareWebAuth);
                 }
             } else {
-                this.getActivity().startActivityForResult(foursquareAuth, REQUEST_CODE_FOURSQUARE_SIGN_IN);
+                startActivityForResult(foursquareAuth, REQUEST_CODE_FOURSQUARE_SIGN_IN);
             }
         } else {
             UpdateCharCountFromChip();
             UpdatePendingUpdateServices(mChipFoursquare, UpdateService.SERVICE_FOURSQUARE);
             if(CurrentPickedLocation == null)
-                mButtonLocationAdd.performClick();
                 ShowLocationPicker();
         }
     }
@@ -692,13 +703,41 @@ public class MainFragment extends BaseRapidoFragment
     public void PlusChipClick() {
         if(!MainActivity.mPlusEnabled) {
             mChipPlus.setChecked(false);
-            this.getActivity().startActivityForResult(
-                    new Intent(mContext, GooglePlusAuthActivity.class),
-                    GooglePlusAuthActivity.REQUEST_CODE_GOOGLE_SIGN_IN);
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                    ActivityCompat.checkSelfPermission(
+                        getActivity(),
+                        Manifest.permission.GET_ACCOUNTS)
+                            != PackageManager.PERMISSION_GRANTED) {
+
+                if(ActivityCompat.shouldShowRequestPermissionRationale(
+                        getActivity(),
+                        Manifest.permission.GET_ACCOUNTS)) {
+                    PopSnackBar(getString(R.string.perm_get_accounts_rationale),
+                            UpdateService.SERVICE_GOOGLE_PLUS, R.string.perm_enable,
+                            new SnackBar.OnMessageClickListener() {
+                                @Override
+                                public void onMessageClick(Parcelable token) {
+                                    ActivityCompat.requestPermissions(
+                                            getActivity(),
+                                            new String[]{Manifest.permission.GET_ACCOUNTS},
+                                            REQUEST_CODE_PERMISSION_GET_ACCOUNT);
+                                }
+                            });
+                }
+            } else {
+                startActivityForResult(new Intent(mContext, GooglePlusAuthActivity.class), GooglePlusAuthActivity.REQUEST_CODE_GOOGLE_SIGN_IN);
+            }
         } else {
             UpdateCharCountFromChip();
             UpdatePendingUpdateServices(mChipPlus, UpdateService.SERVICE_GOOGLE_PLUS);
         }
+    }
+
+    public void startActivityForResult(Intent intent, int requestCode) {
+        this.getActivity().startActivityForResult(
+                intent,
+                requestCode);
     }
 
     @OnLongClick(R.id.compose_to_chip_plus)
@@ -733,17 +772,13 @@ public class MainFragment extends BaseRapidoFragment
     public void BitlyChipClick() {
         if(!MainActivity.mBitlyEnabled) {
             mChipBitly.setChecked(false);
-            LaunchBitlyAuth();
+            startActivityForResult(
+                    new Intent(mContext, BitlyAuthActivity.class),
+                    BitlyAuthActivity.REQUEST_CODE_BITLY_SIGN_IN);
         } else {
             UpdateCharCountFromChip();
             UpdatePendingUpdateServices(mChipBitly, UpdateService.SERVICE_BITLY);
         }
-    }
-
-    private void LaunchBitlyAuth() {
-        this.getActivity().startActivityForResult(
-                new Intent(mContext, BitlyAuthActivity.class),
-                BitlyAuthActivity.REQUEST_CODE_BITLY_SIGN_IN);
     }
 
     @OnLongClick(R.id.compose_to_chip_bitly)
@@ -785,11 +820,12 @@ public class MainFragment extends BaseRapidoFragment
                 new SnackBar.Builder(this.getActivity()).withMessage(message);
         if(service != null) {
             int textColor = ServiceUtils.GetServiceTextColor(service);
-            int backgroundColor = ServiceUtils.GetServiceColor(service);
-            SnackBar.Style actionStyle = null;
+            builder.withTextColorId(textColor);
 
-            builder.withTextColorId(textColor)
-                    .withBackgroundColorId(backgroundColor);
+            if(service != UpdateService.NONE) {
+                int backgroundColor = ServiceUtils.GetServiceColor(service);
+                builder.withBackgroundColorId(backgroundColor);
+            }
         }
 
         if(actionId > 0 && clickListener != null) {
@@ -832,7 +868,6 @@ public class MainFragment extends BaseRapidoFragment
                     mChipFoursquare.setChecked(true);
                     MainActivity.mFoursquareEnabled = mPreferences.foursquareEnabled().getOr(false);
 
-                    mButtonLocationAdd.performClick();
                     ShowLocationPicker();
 
                     PopSnackBar(
@@ -919,11 +954,53 @@ public class MainFragment extends BaseRapidoFragment
     }
 
     private void ShowLocationPicker() {
-        startActivityForResult(
-                new Intent(
-                        mContext,
-                        LocationPicker.class),
-                REQUEST_CODE_LOCATION_PICKER);
+        ShowLocationPicker(false, null);
+    }
+
+    private void ShowLocationPicker(boolean showWave, Point touchPoint) {
+        Log.i(LOG_TAG, "Inside location picker");
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                ActivityCompat.checkSelfPermission(
+                        getActivity(),
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(
+                    getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                PopSnackBar(getString(R.string.perm_location_rationale),
+                        UpdateService.NONE, R.string.perm_enable,
+                        new SnackBar.OnMessageClickListener() {
+                            @Override
+                            public void onMessageClick(Parcelable token) {
+                                ActivityCompat.requestPermissions(
+                                        getActivity(),
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        REQUEST_CODE_PERMISSION_ACCESS_FINE_LOCATION);
+                            }
+                        });
+            } else {
+                new LocationPermissionExplainerDialog()
+                        .show(getFragmentManager(), DIALOG_PERM_ACCOUNT_EXPLAINER);
+            }
+        } else {
+            if (showWave) {
+                int color = getResources().getColor(R.color.accent);
+                WaveCompat.startWaveFilterForResult(this.getActivity(),
+                        new WaveDrawable()
+                                .setColor(color)
+                                .setTouchPoint(touchPoint),
+                        addWaveColorToIntent(
+                                new Intent(mContext, LocationPicker.class),
+                                color),
+                        REQUEST_CODE_LOCATION_PICKER);
+            } else {
+                startActivityForResult(new Intent(
+                                mContext,
+                                LocationPicker.class),
+                        REQUEST_CODE_LOCATION_PICKER);
+            }
+        }
     }
 
     private void ShowPickedLocationInfo() {
@@ -1076,7 +1153,9 @@ public class MainFragment extends BaseRapidoFragment
                                 new SnackBar.OnMessageClickListener() {
                             @Override
                             public void onMessageClick(Parcelable token) {
-                                LaunchBitlyAuth();
+                                startActivityForResult(
+                                        new Intent(mContext, BitlyAuthActivity.class),
+                                        BitlyAuthActivity.REQUEST_CODE_BITLY_SIGN_IN);
                             }
                         });
                     }
@@ -1201,7 +1280,7 @@ public class MainFragment extends BaseRapidoFragment
                     .setText(updateText)
                     .getIntent();
 
-            this.startActivityForResult(shareIntent, 0);
+            startActivityForResult(shareIntent, 0);
         }
     }
 
@@ -1535,15 +1614,8 @@ public class MainFragment extends BaseRapidoFragment
 
     @Override
     public void onWaveTouchUp(View view, Point locationInView, Point locationInScreen) {
-        int color = getResources().getColor(R.color.accent);
-        WaveCompat.startWaveFilterForResult(this.getActivity(),
-                new WaveDrawable()
-                        .setColor(color)
-                        .setTouchPoint(locationInScreen),
-                addWaveColorToIntent(
-                        new Intent(mContext, LocationPicker.class),
-                        color),
-                REQUEST_CODE_LOCATION_PICKER);
+        Log.i(LOG_TAG, "Inside onWaveTouchUp");
+        ShowLocationPicker(true, locationInScreen);
     }
 
     private Intent addWaveColorToIntent(Intent intent, int color) {
@@ -1553,5 +1625,88 @@ public class MainFragment extends BaseRapidoFragment
 
     public void setData(UpdateEvent data) {
         this.mUpdateEventData = data;
+    }
+
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
+        if(requestCode == REQUEST_CODE_PERMISSION_GET_ACCOUNT) {
+            Log.i(LOG_TAG, "Inside GET_ACCOUNT Permission response");
+            if(grantResults.length == 1 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startActivityForResult(
+                        new Intent(mContext, GooglePlusAuthActivity.class),
+                        GooglePlusAuthActivity.REQUEST_CODE_GOOGLE_SIGN_IN);
+            } else {
+                PopSnackBar(
+                        String.format(
+                                getString(R.string.perm_denied),
+                                getString(R.string.perm_get_accounts)));
+            }
+        } else if(requestCode == REQUEST_CODE_PERMISSION_ACCESS_FINE_LOCATION) {
+            Log.i(LOG_TAG, "Inside ACCESS_FINE_LOCATION Permission response");
+            if (grantResults.length == 1 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.i(LOG_TAG, "Permission Granted, launch LocationPicker");
+                mButtonLocationAdd.performClick();
+            } else {
+                Log.i(LOG_TAG, "Else permission denied...");
+                PopSnackBar(
+                        String.format(
+                                getString(R.string.perm_denied),
+                                getString(R.string.perm_get_accounts)));
+            }
+        }
+    }
+
+    public static class GooglePlusPermissionExplainerDialog extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            return
+                    new AlertDialog.Builder(this.getActivity())
+                            .setView(inflater.inflate(R.layout.dialog_permissions_account, null))
+                            .setPositiveButton(android.R.string.ok,
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(
+                                                DialogInterface dialogInterface, int i) {
+                                            ActivityCompat.requestPermissions(
+                                                    getActivity(),
+                                                    new String[]{Manifest.permission.GET_ACCOUNTS},
+                                                    REQUEST_CODE_PERMISSION_GET_ACCOUNT);
+                                        }
+                                    })
+                            .create();
+        }
+    }
+
+    public static class LocationPermissionExplainerDialog extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            return
+                    new AlertDialog.Builder(this.getActivity())
+                            .setView(inflater.inflate(R.layout.dialog_permissions_location, null))
+                            .setPositiveButton(R.string.perm_enable,
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(
+                                                DialogInterface dialogInterface, int i) {
+                                            ActivityCompat.requestPermissions(
+                                                    getActivity(),
+                                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                                    REQUEST_CODE_PERMISSION_ACCESS_FINE_LOCATION);
+                                        }
+                                    })
+                            .setNegativeButton(android.R.string.cancel,
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            // Do Nothing
+                                        }
+                                    })
+                            .create();
+        }
     }
 }
