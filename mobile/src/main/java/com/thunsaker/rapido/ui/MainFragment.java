@@ -722,6 +722,9 @@ public class MainFragment extends BaseRapidoFragment
                                             REQUEST_CODE_PERMISSION_GET_ACCOUNT);
                                 }
                             });
+                } else {
+                    new GooglePlusPermissionExplainerDialog()
+                            .show(getFragmentManager(), DIALOG_PERM_ACCOUNT_EXPLAINER);
                 }
             } else {
                 startActivityForResult(new Intent(mContext, GooglePlusAuthActivity.class), GooglePlusAuthActivity.REQUEST_CODE_GOOGLE_SIGN_IN);
