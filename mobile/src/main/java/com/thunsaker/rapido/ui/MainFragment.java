@@ -17,7 +17,6 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NotificationCompat;
@@ -38,7 +37,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.*;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.foursquare.android.nativeoauth.FoursquareOAuth;
 import com.foursquare.android.nativeoauth.model.AccessTokenResponse;
@@ -87,22 +92,22 @@ import com.wangjie.wavecompat.WaveCompat;
 import com.wangjie.wavecompat.WaveDrawable;
 import com.wangjie.wavecompat.WaveTouchHelper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
 import de.greenrobot.event.EventBus;
 import io.fabric.sdk.android.Fabric;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
@@ -143,7 +148,6 @@ public class MainFragment extends BaseRapidoFragment
     SwarmService mSwarmService;
 
     @Bind(R.id.compose_send_button) Button mButtonSend;
-    @Bind(R.id.compose_send_fab) FloatingActionButton mFabSend;
 
     @Bind(R.id.compose_add_location) ImageButton mButtonLocationAdd;
     @Bind(R.id.compose_location_wrapper) RelativeLayout mWrapperLocation;
@@ -1094,11 +1098,6 @@ public class MainFragment extends BaseRapidoFragment
     @Override
     public void onDestroy() {
             super.onDestroy();
-    }
-
-    @OnClick(R.id.compose_send_fab)
-    public void ComposeSendFabClick() {
-        mButtonSend.performClick();
     }
 
     @OnClick(R.id.compose_send_button)
