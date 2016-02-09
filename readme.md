@@ -11,4 +11,4 @@ v.2.0
 - Added limited location support to Twitter (regional not specific)
 - Added Facebook location support (if a match is found on FB)
 
-[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png)](https://bit.ly/RapidoApp "Get it on Google Play")
+<a href="https://bit.ly/RapidoApp"><img src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" alt="Get it on Google Play" width="185px" /></a>
